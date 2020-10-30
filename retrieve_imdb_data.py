@@ -2,6 +2,7 @@ import csv
 import imdb
 import pickle
 import argparse
+import os
 
 from collections import defaultdict
 from tqdm.auto import tqdm
@@ -10,8 +11,11 @@ def retrieve_movies_data_from_imdb(args):
     """
     Given the merged movies data, retrieve data for ones which have a matching IMDB id
     """
-    ia = imdb.IMDb()
 
+    if args.imdb_sqlite_path:
+        ia = imdb.IMDb('s3', os.path.join('sqlite+pysqlite:///', args.imdb_sqlite_path))
+    else:
+        ia = imdb.IMDb()
     movies_data = defaultdict(dict)
 
     with open(args.merged_movie_data_path, 'r') as merged_movies_file:
@@ -36,9 +40,15 @@ def retrieve_movies_data_from_imdb(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_arg('--merged_movie_data_path', 
+    parser.add_argument('--merged_movie_data_path', 
         default='redial/movies_merged_with_imdb.csv',
-        type=str
+        type=str,
+        help='Path to the merged file of imdb info and movielens data'
+    )
+    parser.add_argument('--imdb_sqlite_path',
+        default='',
+        type=str,
+        help='Path to the IMDB sqlite data (for offline retrieval)'
     )
 
     args = parser.parse_args()
