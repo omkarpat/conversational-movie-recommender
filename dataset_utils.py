@@ -30,32 +30,44 @@ def prepare_baseline_redial_split(
 
     examples = []
 
+    # Matching for movie mention ids: @1234
     movie_mention_pattern = re.compile(r"@(\d+)")
-
+    # Pattern for mathching the year portion: (2007)
+    movie_title_year_pattern = re.compile(r"\s+\(\d+\)")
     for conversation_str in tqdm(split_conversations):
         conversation = json.loads(conversation_str)
 
         context = []
 
-        for message in conversation["messages"]:
-            
+        messages = conversation["messages"]
+
+        response = ""
+
+        for i, message in enumerate(messages):
             processed_text = message["text"]
             
             for mention in movie_mention_pattern.finditer(processed_text):
                 movie_id = mention.group(1)
                 
-                movie_title = movie_db_map[movie_id]
-
+                # Remove year from title
+                movie_title = movie_title_year_pattern.sub('', movie_db_map[movie_id])
                 # for now, naively substitute movie title in message
                 processed_text = processed_text.replace("@" + movie_id, movie_title)
 
-            # print(tokenizer.encode(processed_text))
-            examples.append(BaselineExample(
-                context,
-                tokenizer.encode(processed_text)
-            ))
+            if i == len(messages) - 1 or \
+                message["senderWorkerId"] != messages[i + 1]["senderWorkerId"]:
+                response += processed_text
+                encoded_response = tokenizer.encode(response)
+                examples.append(BaselineExample(
+                    context,
+                    encoded_response
+                ))
 
-            context = context + [processed_text]
+                context = context + [encoded_response]
+                response = ""
+            else:
+                # We looked ahead and saw another follow-on response
+                response += processed_text + " . "
 
     return examples
 
@@ -109,9 +121,3 @@ def prepare_redial_baseline_dataset(
     save_pickle(dataset_cache_path, dataset)
     print("Saved file to cache ", dataset_cache_path)
     return dataset
-
-if __name__ == "__main__":
-    movie_db_map = get_movie_db_map("redial/movies_with_mentions.csv")
-    tokenizer = GPT2Tokenizer.from_pretrained("microsoft/DialoGPT-medium")
-
-    prepare_redial_baseline_dataset("redial", tokenizer, movie_db_map)
