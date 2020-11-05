@@ -1,6 +1,7 @@
 import torch
 from collections import defaultdict
 from itertools import chain
+import os
 
 def collate_batch_elements(batch, tokenizer, device):
 
@@ -45,5 +46,14 @@ def pad_batch_items(batch_items, pad_token_map, padded_inputs):
 def save_model_config(model, tokenizer, args):
     pass
 
-def save_model_checkpoint(model, args):
-    pass
+def save_model_checkpoint(model, args, checkpoint_name="checkpoint.pt"):
+    checkpoint_path = os.path.join(args.experiment_path, args.experiment_name, "checkpoints")
+    os.makedirs(checkpoint_path, exist_ok=True)
+
+    checkpoint_path = os.path.join(args.experiment_path, checkpoint_name)
+    torch.save(model.state_dict(), checkpoint_path)
+
+def save_full_model(model, args, model_name):
+    checkpoint_path = os.path.join(args.experiment_path, model_name)
+    
+    model.save_pretrained(save_model_checkpoint)
