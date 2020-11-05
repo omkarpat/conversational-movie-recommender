@@ -261,6 +261,6 @@ if __name__ == "__main__":
     model = GPT2LMHeadModel.from_pretrained(args.model_checkpoint)
     optimizer = AdamW(model.parameters(), lr=args.lr, correct_bias=True)
     loss_fn = nn.CrossEntropyLoss(ignore_index=-100)
-
+    model.to(args.device)
     save_model_config(tokenizer, args)
     train_baseline_lm(model, (train_loader, test_loader), optimizer, loss_fn, args)
