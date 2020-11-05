@@ -1,5 +1,5 @@
 certifi==2020.6.20
-cffi @ file:///tmp/build/80754af9/cffi_1600699165083/work
+cffi # @ file:///tmp/build/80754af9/cffi_1600699165083/work
 chardet==3.0.4
 click==7.1.2
 dataclasses==0.7
@@ -11,10 +11,10 @@ lxml==4.6.1
 mkl-fft==1.2.0
 mkl-random==1.1.1
 mkl-service==2.3.0
-numpy @ file:///tmp/build/80754af9/numpy_and_numpy_base_1603487797006/work
+numpy # @ file:///tmp/build/80754af9/numpy_and_numpy_base_1603487797006/work
 packaging==20.4
 protobuf==3.13.0
-pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pycparser # @ file:///tmp/build/80754af9/pycparser_1594388511720/work
 pyparsing==2.4.7
 regex==2020.10.28
 requests==2.24.0
