@@ -24,7 +24,8 @@ from trainer.metrics import RunningMetric
 from train_utils import (
     collate_batch_elements,
     save_model_config,
-    save_model_checkpoint
+    save_model_checkpoint,
+    save_full_model
 )
 
 logger = logging.getLogger(__file__)
@@ -121,7 +122,6 @@ def evaluate_lm(model, loader, loss_fn, args):
             if (i + 1) % args.log_every_n == 0:
                 logger.info(f"Iteration {i}: [Running Loss: {running_loss.get()};Running PPL: {math.exp(running_loss.get())}]")
 
-
     logger.info(f"Validation NLL: {running_loss.get()}")
     logger.info(f"Validation PPL: {math.exp(running_loss.get())}")
 
@@ -135,7 +135,7 @@ def train_baseline_lm(model, loaders, optimizer, loss_fn, args):
     for i in range(args.n_epochs):
         logger.info(f"Epoch {i + 1}:")
         train_lm(model, train_loader, optimizer, step_counter, args)        
-        evaluate_lm(model, test_loader, optimizer, args)
+        evaluate_lm(model, test_loader, loss_fn, args)
         epoch_model = f"{args.experiment_name}_epoch_{i + 1}"
         save_full_model(model, args, epoch_model)
         logger.info(f"Model {epoch_model} saved!")

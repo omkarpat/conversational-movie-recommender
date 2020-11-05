@@ -54,6 +54,6 @@ def save_model_checkpoint(model, args, checkpoint_name="checkpoint.pt"):
     torch.save(model.state_dict(), checkpoint_path)
 
 def save_full_model(model, args, model_name):
-    checkpoint_path = os.path.join(args.experiment_path, model_name)
+    checkpoint_path = os.path.join(args.experiment_path, args.experiment_name, model_name)
     
-    model.save_pretrained(save_model_checkpoint)
+    model.save_pretrained(checkpoint_path)
