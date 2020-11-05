@@ -5,7 +5,7 @@ import os
 import logging
 import json
 
-from transformers import GPT2Tokenizer, GPT2LMHeadModel, AdamW
+from transformers import GPT2Tokenizer, AdamW
 
 import math
 import torch
@@ -163,6 +163,12 @@ def get_argparser():
         default="microsoft/DialoGPT-medium",
         help="The model checkpoint to use"
     )
+
+    parser.add_argument('--gradient_checkpoint',
+        action="store_true",
+        help="Use gradient checkpoint variant GPT2"
+    )
+
     parser.add_argument('--data_path',
         default="redial/",
         help="Path to dataset"
@@ -258,7 +264,12 @@ if __name__ == "__main__":
     logger.info("Load datasets")
     train_loader, test_loader = prepare_dataloaders(args, tokenizer)
     
-    model = GPT2LMHeadModel.from_pretrained(args.model_checkpoint)
+    if args.gradient_checkpoint:
+        from models.gpt2 import GPT2LMHeadModel
+        model = GPT2LMHeadModel.from_pretrained(args.model_checkpoint)
+    else:
+        from transformers import GPT2LMHeadModel
+        model = GPT2LMHeadModel.from_pretrained(args.model_checkpoint)
     optimizer = AdamW(model.parameters(), lr=args.lr, correct_bias=True)
     loss_fn = nn.CrossEntropyLoss(ignore_index=-100)
     model.to(args.device)
