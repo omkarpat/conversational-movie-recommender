@@ -150,7 +150,9 @@ def save_model_config(tokenizer, args):
 
     training_args_path = os.path.join(args.experiment_path, args.experiment_name, 'training_args.json')
     with open(training_args_path, 'w') as training_args_file:
-        json.dump(vars(args), training_args_file)
+        args_dict = vars(args)
+        del args_dict['device'] # device arg is not serializable
+        json.dump(args_dict, training_args_file)
     
 
 def get_argparser():
