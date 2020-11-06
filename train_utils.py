@@ -58,6 +58,7 @@ def save_model_config(model, tokenizer, args):
 def save_model_checkpoint(model, args, checkpoint_name="checkpoint.pt"):
     checkpoint_path = os.path.join(args.experiment_path, args.experiment_name, "checkpoints")
     os.makedirs(checkpoint_path, exist_ok=True)
+    checkpoint_file_path = os.path.join(checkpoint_path, checkpoint_name)
     torch.save(model.state_dict(), checkpoint_path)
 
 def save_full_model(model, args, model_name):
