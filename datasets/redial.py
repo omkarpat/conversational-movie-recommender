@@ -7,13 +7,14 @@ class RedialDialoGPTDataset(Dataset):
         self.dataset = dataset
         self.tokenizer = tokenizer
         self.max_history_turns = args.max_history_turns
+        self.inference = args.inference
 
     def __getitem__(self, index):
 
         example = self.dataset[index]
 
         example = self._truncate_example(example)
-        instance = self.prepare_input_for_dialogpt(example, self.tokenizer)
+        instance = self.prepare_input_for_dialogpt(example, self.tokenizer, self.inference)
 
         return instance
 
@@ -26,7 +27,7 @@ class RedialDialoGPTDataset(Dataset):
         return example
 
     @staticmethod
-    def prepare_input_for_dialogpt(example, tokenizer):
+    def prepare_input_for_dialogpt(example, tokenizer, inference=False):
         
         bos, eos = tokenizer.convert_tokens_to_ids([tokenizer.bos_token, tokenizer.eos_token])
         context_turns = example.context
@@ -39,8 +40,10 @@ class RedialDialoGPTDataset(Dataset):
             input_ids += turn + [eos]
             labels += len(turn) * [eos]
         
-        input_ids += system_turn + [eos]
-        labels += system_turn + [-100]
+        if not inference: # Don't add system response for inference
+            input_ids += system_turn + [eos]
+            labels += system_turn + [eos]
+        
         token_type_ids = [0 for _ in labels]
         instance = {
             "input_ids": input_ids,

@@ -252,7 +252,7 @@ if __name__ == "__main__":
     parser = get_argparser()
 
     args = parser.parse_args()
-
+    args.inference = False
     logger.info(f"Arguments : {pformat(args)}")
 
     logging.basicConfig(level=logging.INFO)

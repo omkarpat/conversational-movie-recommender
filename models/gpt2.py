@@ -534,12 +534,35 @@ class GPT2LMHeadModel(GPT2PreTrainedModel):
     def get_output_embeddings(self):
         return self.lm_head
 
-    def prepare_inputs_for_generation(self, input_ids, past, **kwargs):
+    def prepare_inputs_for_generation(self, input_ids, past=None, **kwargs):
         # only last token for inputs_ids if past is defined in kwargs
         if past:
             input_ids = input_ids[:, -1].unsqueeze(-1)
 
-        return {"input_ids": input_ids, "past": past, "use_cache": kwargs["use_cache"]}
+        # We are adding the code from 
+        # GitHub PR: https://github.com/huggingface/transformers/pull/7552
+        # I am considering whether to pull the latest version of the 
+        # transformers/src/modeling_gpt2.py to avoid complications - Rishi
+
+        attention_mask = kwargs.get("attention_mask", None)
+        position_ids = kwargs.get("position_ids", None)
+
+        if attention_mask is not None and position_ids is None:
+            # create postion_ids on the fly for batch generation
+            position_ids = attention_mask.long().cumsum(-1) - 1
+            position_ids.masked_fill_(attention_mask == 0, 1)
+            if past:
+                position_ids = position_ids[:, -1].unsqueeze(-1)
+        else:
+            position_ids = None
+
+        return {
+            "input_ids": input_ids, 
+            "past": past, 
+            "use_cache": kwargs["use_cache"],
+            "position_ids": position_ids,
+            "attention_mask": attention_mask
+            }
 
     @add_start_docstrings_to_callable(GPT2_INPUTS_DOCSTRING)
     def forward(
