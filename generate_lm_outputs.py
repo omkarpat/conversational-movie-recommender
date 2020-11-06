@@ -66,7 +66,7 @@ def main(args):
         config = GPT2Config.from_pretrained(args.model_configuration)
         state_dict = torch.load(args.model_checkpoint)
 
-        model = GPT2LMHeadModel.from_pretrained(config=config,state_dict=state_dict)
+        model = GPT2LMHeadModel.from_pretrained(args.model_configuration,state_dict=state_dict)
     else:
         model = GPT2LMHeadModel.from_pretrained(args.model_checkpoint)
     model.to(args.device)
