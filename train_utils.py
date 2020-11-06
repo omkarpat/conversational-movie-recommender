@@ -40,6 +40,9 @@ def pad_batch_items(batch_items, pad_token_map, padded_inputs, pad_left):
 
     if pad_left:
         # Attention mask is necessary to avoid attending on left padding tokens
+        # this isn't a problem for the right-padding case since
+        # the logits from the right padding tokens can be ignored.
+        # See: https://github.com/huggingface/transformers/issues/808
         batch_items["attention_mask"] = [[0 if i < max_seq_len - len(x) else 1 for i in range(max_seq_len)] for x in batch_items["input_ids"]]
 
     for name in padded_inputs:
@@ -52,8 +55,10 @@ def pad_batch_items(batch_items, pad_token_map, padded_inputs, pad_left):
             batch_items[name] = [ (x + [pad_token] * (max_seq_len - len(x))) for x in batch_items[name]]
     return batch_items        
 
-def save_model_config(model, tokenizer, args):
-    pass
+def save_model_config(config, args):
+    config_path = os.path.join(args.experiment_path, args.experiment_name)
+    os.makedirs(config_path, exist_ok=True)
+    config.save_pretrained(config_path)
 
 def save_model_checkpoint(model, args, checkpoint_name="checkpoint.pt"):
     checkpoint_path = os.path.join(args.experiment_path, args.experiment_name, "checkpoints")

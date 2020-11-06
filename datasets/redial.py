@@ -3,6 +3,15 @@ from torch.utils.data import Dataset
 from itertools import chain
 
 class RedialDialoGPTDataset(Dataset):
+    """
+    This dataset class prepares input in the vanilla DialoGPT format:
+    
+    <|endoftext|> TURN_1 <|endoftext|> TURN_2 <|endoftext|> ... <|endoftext|> TURN_N <|endoftext|>
+
+    This baseline is expected to perform worse since there's 
+    nothing for the model to condition on
+    """
+
     def __init__(self, dataset, tokenizer, args):
         self.dataset = dataset
         self.tokenizer = tokenizer

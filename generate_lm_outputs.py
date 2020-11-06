@@ -43,7 +43,7 @@ def generate_outputs(model, loader, tokenizer, args):
             output_sequences = model.generate(
                 input_ids=input_ids,
                 attention_mask=attention_mask,
-                do_sample=True,
+                do_sample=not args.no_sample,
                 pad_token_id=tokenizer.eos_token_id,
                 max_length=input_ids.size(1) + args.max_length,
                 temperature=args.temperature,

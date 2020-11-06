@@ -20,6 +20,7 @@ from dataset_utils import (
 
 from trainer.counter import GlobalStepCounter
 from trainer.metrics import RunningMetric
+from trainer.scheduler import PiecewiseLinearLR
 
 from train_utils import (
     collate_batch_elements,
@@ -60,7 +61,7 @@ def prepare_dataloaders(args, tokenizer):
 
     return train_loader, test_loader
 
-def train_lm(model, loader, optimizer, step_counter, args):
+def train_lm(model, loader, optimizer, scheduler, step_counter, args):
     logger.info("Running training")
     model.train()
 
@@ -87,10 +88,12 @@ def train_lm(model, loader, optimizer, step_counter, args):
         if (i + 1) % args.gradient_accumulation_steps == 0:
             optimizer.step()
             optimizer.zero_grad()
+            scheduler.step()
 
         if (i + 1) % args.log_every_n == 0:
-            logger.info(f"Iteration {i}: [Running Loss: {running_loss.get()};Running PPL: {math.exp(running_loss.get())}]")
+            logger.info(f"Iteration {i + 1}: [Running Loss: {running_loss.get()};Running PPL: {math.exp(running_loss.get())}]")
 
+        
         step_counter.step()
 
         if step_counter.get() % args.checkpoint_every_n == 0:
@@ -127,14 +130,14 @@ def evaluate_lm(model, loader, loss_fn, args):
 
 
 
-def train_baseline_lm(model, loaders, optimizer, loss_fn, args):
+def train_baseline_lm(model, loaders, optimizer, loss_fn, scheduler, args):
     
     train_loader, test_loader = loaders
 
     step_counter = GlobalStepCounter()
     for i in range(args.n_epochs):
         logger.info(f"Epoch {i + 1}:")
-        train_lm(model, train_loader, optimizer, step_counter, args)        
+        train_lm(model, train_loader, optimizer, scheduler, step_counter, args)        
         evaluate_lm(model, test_loader, loss_fn, args)
         epoch_model = f"{args.experiment_name}_epoch_{i + 1}"
         save_full_model(model, args, epoch_model)
@@ -270,8 +273,12 @@ if __name__ == "__main__":
     else:
         from transformers import GPT2LMHeadModel
         model = GPT2LMHeadModel.from_pretrained(args.model_checkpoint)
+    
     optimizer = AdamW(model.parameters(), lr=args.lr, correct_bias=True)
+    scheduler = PiecewiseLinearLR(optimizer, [(0, args.lr), (args.n_epochs * len(train_loader), 0.0)])
     loss_fn = nn.CrossEntropyLoss(ignore_index=-100)
     model.to(args.device)
-    save_model_config(tokenizer, args)
-    train_baseline_lm(model, (train_loader, test_loader), optimizer, loss_fn, args)
+
+
+    save_model_config(model.config, args)
+    train_baseline_lm(model, (train_loader, test_loader), optimizer, loss_fn, scheduler, args)
