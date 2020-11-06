@@ -58,7 +58,7 @@ def generate_outputs(model, loader, tokenizer, args):
 
 
 def main(args):
-    tokenizer = GPT2Tokenizer.from_pretrained(args.model_checkpoint)
+    tokenizer = GPT2Tokenizer.from_pretrained(args.model_configuration)
     test_loader = prepare_dataloader(args, tokenizer)
 
     
