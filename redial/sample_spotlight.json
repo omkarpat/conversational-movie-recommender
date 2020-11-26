@@ -1,0 +1,253 @@
+{
+    "movieMentions": {
+        "78874": "Click  (2006)",
+        "99910": "Blazing Saddles (1974)",
+        "103896": "House of 1000 Corpses (2003)",
+        "183056": "The Big Lebowski",
+        "187028": "It  (2017)",
+        "204794": "It (1990)",
+        "205163": "Avengers: Infinity War (2018)"
+    },
+    "respondentQuestions": {
+        "78874": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        },
+        "99910": {
+            "suggested": 1,
+            "seen": 1,
+            "liked": 1
+        },
+        "103896": {
+            "suggested": 1,
+            "seen": 0,
+            "liked": 1
+        },
+        "183056": {
+            "suggested": 1,
+            "seen": 1,
+            "liked": 1
+        },
+        "187028": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        },
+        "204794": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        },
+        "205163": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        }
+    },
+    "messages": [
+        {
+            "timeOffset": 0,
+            "text": "Hello",
+            "senderWorkerId": 960,
+            "messageId": 204363
+        },
+        {
+            "timeOffset": 5,
+            "text": "hi",
+            "senderWorkerId": 962,
+            "messageId": 204364
+        },
+        {
+            "timeOffset": 8,
+            "text": "i'm open to any movie",
+            "senderWorkerId": 960,
+            "messageId": 204365
+        },
+        {
+            "timeOffset": 16,
+            "text": "What would you recommend me?",
+            "senderWorkerId": 960,
+            "messageId": 204366
+        },
+        {
+            "timeOffset": 26,
+            "text": "i liked @205163",
+            "senderWorkerId": 960,
+            "messageId": 204367
+        },
+        {
+            "timeOffset": 33,
+            "text": "@183056 is my fav",
+            "senderWorkerId": 962,
+            "messageId": 204368
+        },
+        {
+            "timeOffset": 39,
+            "text": "i also like scary movies",
+            "senderWorkerId": 960,
+            "messageId": 204369
+        },
+        {
+            "timeOffset": 60,
+            "text": "i watched @183056",
+            "senderWorkerId": 960,
+            "messageId": 204370
+        },
+        {
+            "timeOffset": 67,
+            "text": "how about @103896",
+            "senderWorkerId": 962,
+            "messageId": 204371
+        },
+        {
+            "timeOffset": 69,
+            "text": "i also watched @187028",
+            "senderWorkerId": 960,
+            "messageId": 204372
+        },
+        {
+            "timeOffset": 83,
+            "text": "NO, i have not seen that one",
+            "senderWorkerId": 960,
+            "messageId": 204373
+        },
+        {
+            "timeOffset": 93,
+            "text": "i guess i would try that one tomorrow",
+            "senderWorkerId": 960,
+            "messageId": 204374
+        },
+        {
+            "timeOffset": 104,
+            "text": "i also watched @204794  the old one",
+            "senderWorkerId": 960,
+            "messageId": 204375
+        },
+        {
+            "timeOffset": 117,
+            "text": "Which another one would you recommend me?",
+            "senderWorkerId": 960,
+            "messageId": 204376
+        },
+        {
+            "timeOffset": 122,
+            "text": "its by rob Zombie",
+            "senderWorkerId": 962,
+            "messageId": 204377,
+            "spotlight_mentions": [
+                {
+                    "@URI": "http://dbpedia.org/resource/Rob_Zombie",
+                    "@support": "1082",
+                    "@types": "Http://xmlns.com/foaf/0.1/Person,Wikidata:Q5,Wikidata:Q483501,Wikidata:Q24229398,Wikidata:Q215627,DUL:NaturalPerson,DUL:Agent,Schema:Person,Schema:MusicGroup,DBpedia:Person,DBpedia:MusicalArtist,DBpedia:Artist,DBpedia:Agent",
+                    "@surfaceForm": "rob zombie",
+                    "@offset": "7",
+                    "@similarityScore": "0.9999999999996518",
+                    "@percentageOfSecondRank": "0.0"
+                }
+            ]
+        },
+        {
+            "timeOffset": 124,
+            "text": "A funny one",
+            "senderWorkerId": 960,
+            "messageId": 204378
+        },
+        {
+            "timeOffset": 138,
+            "text": "Like @78874  by Adan Sandler",
+            "senderWorkerId": 960,
+            "messageId": 204379
+        },
+        {
+            "timeOffset": 143,
+            "text": "@99910",
+            "senderWorkerId": 962,
+            "messageId": 204380
+        },
+        {
+            "timeOffset": 146,
+            "text": "I could enjoyed so much",
+            "senderWorkerId": 960,
+            "messageId": 204381
+        },
+        {
+            "timeOffset": 154,
+            "text": "No, i have not watched that one",
+            "senderWorkerId": 960,
+            "messageId": 204382
+        },
+        {
+            "timeOffset": 162,
+            "text": "Thank you for helping me",
+            "senderWorkerId": 960,
+            "messageId": 204383
+        },
+        {
+            "timeOffset": 166,
+            "text": "Good bye",
+            "senderWorkerId": 960,
+            "messageId": 204384,
+            "spotlight_mentions": []
+        },
+        {
+            "timeOffset": 173,
+            "text": "you're the same person",
+            "senderWorkerId": 962,
+            "messageId": 204385
+        },
+        {
+            "timeOffset": 176,
+            "text": "Good bye",
+            "senderWorkerId": 960,
+            "messageId": 204386,
+            "spotlight_mentions": []
+        },
+        {
+            "timeOffset": 183,
+            "text": "lol",
+            "senderWorkerId": 962,
+            "messageId": 204387
+        }
+    ],
+    "conversationId": "20059",
+    "respondentWorkerId": 962,
+    "initiatorWorkerId": 960,
+    "initiatorQuestions": {
+        "78874": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        },
+        "99910": {
+            "suggested": 1,
+            "seen": 0,
+            "liked": 1
+        },
+        "103896": {
+            "suggested": 1,
+            "seen": 0,
+            "liked": 1
+        },
+        "183056": {
+            "suggested": 1,
+            "seen": 1,
+            "liked": 1
+        },
+        "187028": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        },
+        "204794": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        },
+        "205163": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        }
+    }
+}

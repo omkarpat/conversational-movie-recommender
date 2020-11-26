@@ -1,0 +1,209 @@
+{
+    "movieMentions": {
+        "78186": "Scary Movie (2000)",
+        "85665": "I Love You Phillip Morris (2009)",
+        "149916": "Bernie  (2011)",
+        "173333": "Monty Python and the Holy Grail (1975)"
+    },
+    "respondentQuestions": {
+        "78186": {
+            "suggested": 1,
+            "seen": 1,
+            "liked": 1
+        },
+        "85665": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        },
+        "149916": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        },
+        "173333": {
+            "suggested": 1,
+            "seen": 0,
+            "liked": 0
+        }
+    },
+    "messages": [
+        {
+            "timeOffset": 0,
+            "text": "Hi what kind of movies do you like?",
+            "senderWorkerId": 1,
+            "messageId": 1308,
+            "spacy_mentions": []
+        },
+        {
+            "timeOffset": 32,
+            "text": "Hey, could you suggest some movies for me? I like things that are true stories an comedy",
+            "senderWorkerId": 14,
+            "messageId": 1309,
+            "spotlight_mentions": [
+                {
+                    "@URI": "http://dbpedia.org/resource/True_Stories_(film)",
+                    "@support": "61",
+                    "@types": "Wikidata:Q386724,Schema:Movie,Schema:CreativeWork,DBpedia:Work,DBpedia:Wikidata:Q11424,DBpedia:Film",
+                    "@surfaceForm": "true stories",
+                    "@offset": "66",
+                    "@similarityScore": "0.6713635645684332",
+                    "@percentageOfSecondRank": "0.4598792062122535"
+                }
+            ],
+            "spacy_mentions": []
+        },
+        {
+            "timeOffset": 49,
+            "text": "stff like @78186",
+            "senderWorkerId": 14,
+            "messageId": 1310,
+            "spacy_mentions": [
+                {
+                    "surface": "Stff",
+                    "type": "CARDINAL"
+                }
+            ]
+        },
+        {
+            "timeOffset": 69,
+            "text": "not so much british humor like @173333",
+            "senderWorkerId": 14,
+            "messageId": 1311,
+            "spotlight_mentions": [
+                {
+                    "@URI": "http://dbpedia.org/resource/British_humour",
+                    "@support": "56",
+                    "@types": "",
+                    "@surfaceForm": "british humor",
+                    "@offset": "12",
+                    "@similarityScore": "0.9999999999999858",
+                    "@percentageOfSecondRank": "0.0"
+                }
+            ],
+            "spacy_mentions": [
+                {
+                    "surface": "british",
+                    "type": "NORP"
+                }
+            ]
+        },
+        {
+            "timeOffset": 137,
+            "text": "@149916 with Jack Black is a comedy and true story",
+            "senderWorkerId": 1,
+            "messageId": 1312,
+            "spotlight_mentions": [
+                {
+                    "@URI": "http://dbpedia.org/resource/Jack_Black",
+                    "@support": "941",
+                    "@types": "Http://xmlns.com/foaf/0.1/Person,Wikidata:Q5,Wikidata:Q24229398,Wikidata:Q215627,DUL:NaturalPerson,DUL:Agent,Schema:Person,DBpedia:Person,DBpedia:Agent",
+                    "@surfaceForm": "jack black",
+                    "@offset": "13",
+                    "@similarityScore": "0.9999999999134275",
+                    "@percentageOfSecondRank": "8.588932929289811E-11"
+                }
+            ],
+            "spacy_mentions": [
+                {
+                    "surface": "@149916",
+                    "type": "ORG"
+                },
+                {
+                    "surface": "jack black",
+                    "type": "ORG"
+                }
+            ]
+        },
+        {
+            "timeOffset": 186,
+            "text": "wow, i wonder how I never heard of this one. i think i would like it. thanks. do you have maybe one more suggestion?",
+            "senderWorkerId": 14,
+            "messageId": 1313,
+            "spacy_mentions": [
+                {
+                    "surface": "one",
+                    "type": "CARDINAL"
+                }
+            ]
+        },
+        {
+            "timeOffset": 259,
+            "text": "Jim Carey @85665 was great too",
+            "senderWorkerId": 1,
+            "messageId": 1314,
+            "spotlight_mentions": [
+                {
+                    "@URI": "http://dbpedia.org/resource/Jim_Carey_(ice_hockey)",
+                    "@support": "33",
+                    "@types": "Http://xmlns.com/foaf/0.1/Person,Wikidata:Q5,Wikidata:Q24229398,Wikidata:Q215627,Wikidata:Q11774891,DUL:NaturalPerson,DUL:Agent,Schema:Person,DBpedia:WinterSportPlayer,DBpedia:Person,DBpedia:IceHockeyPlayer,DBpedia:Athlete,DBpedia:Agent",
+                    "@surfaceForm": "Jim carey",
+                    "@offset": "0",
+                    "@similarityScore": "0.9999968264059812",
+                    "@percentageOfSecondRank": "0.0"
+                }
+            ],
+            "spacy_mentions": [
+                {
+                    "surface": "Jim carey @85665",
+                    "type": "PERSON"
+                }
+            ]
+        },
+        {
+            "timeOffset": 291,
+            "text": "Oh, i did love that one. Thanks for reminding me. I think i will go back and watch that again too.",
+            "senderWorkerId": 14,
+            "messageId": 1315,
+            "spacy_mentions": []
+        },
+        {
+            "timeOffset": 306,
+            "text": "Thanks for your help! We are done then",
+            "senderWorkerId": 14,
+            "messageId": 1316,
+            "spacy_mentions": []
+        },
+        {
+            "timeOffset": 316,
+            "text": "Glad I could help bye.",
+            "senderWorkerId": 1,
+            "messageId": 1317,
+            "spotlight_mentions": [],
+            "spacy_mentions": []
+        },
+        {
+            "timeOffset": 323,
+            "text": "bye bye",
+            "senderWorkerId": 14,
+            "messageId": 1318,
+            "spotlight_mentions": [],
+            "spacy_mentions": []
+        }
+    ],
+    "conversationId": "462",
+    "respondentWorkerId": 1,
+    "initiatorWorkerId": 14,
+    "initiatorQuestions": {
+        "78186": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 1
+        },
+        "85665": {
+            "suggested": 1,
+            "seen": 1,
+            "liked": 1
+        },
+        "149916": {
+            "suggested": 1,
+            "seen": 0,
+            "liked": 1
+        },
+        "173333": {
+            "suggested": 0,
+            "seen": 1,
+            "liked": 0
+        }
+    }
+}
