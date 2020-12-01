@@ -1,3 +1,5 @@
+import csv
+
 import requests
 import json
 import logging
@@ -5,6 +7,7 @@ import argparse
 import os
 import spacy
 import imdb
+import pdb
 
 from data_utils import load_conversations, dump_conversations_to_file, popular_actors_list, popular_directors_list
 
@@ -198,7 +201,67 @@ def link_mention_to_imdb(conversations, imdb_sqlite_path=None):
             message["imdb_entries"] = [item.asXML() for item in imdb_records]
     return conversations
 
-                
+def load_movie_mentions_csv(mentions_csv_path):
+    with open(mentions_csv_path, 'r') as csv_file:
+        return [row for row in csv.DictReader(csv_file)]
+
+def fix_movie_mentions(conversations, movie_corrected_mentions, imdb_sqlite_path):
+    if imdb_sqlite_path:
+        ia = imdb.IMDb('s3', os.path.join('sqlite+pysqlite:///', args.imdb_sqlite_path))
+    else:
+        ia = imdb.IMDb()
+
+    def extract_imdb_id(url: str):
+        return url.replace("https://www.imdb.com/title/tt", "").replace("/", "")
+
+    for mention in movie_corrected_mentions:
+        conv_id = mention["conversation_index"]
+        message_index = mention["message_index"]
+
+        conversation = conversations[int(conv_id)]
+
+        message = conversation["messages"][int(message_index)]
+
+        message_text = message["text"]
+
+        movie_mentions_dict = conversation["movieMentions"]
+
+
+
+        if mention["Movie Name 1"]:
+            mention1 = mention["Movie Name 1"]
+            imdb_id_1 = extract_imdb_id(mention["IMDB ID 1"])
+            message_text = message_text.replace(mention1, imdb_id_1)
+
+            movie_1 = ia.get_movie(imdb_id_1)
+            movie_mentions_dict[imdb_id_1] = movie_1['title']
+
+
+        if mention["Movie Name 2"]:
+            mention2 = mention["Movie Name 2"]
+            imdb_id_2 = extract_imdb_id(mention["IMDB ID 2"])
+
+            movie_2 = ia.get_movie(imdb_id_2)
+            movie_mentions_dict[imdb_id_2] = movie_2['title']
+
+            message_text = message_text.replace(mention2, imdb_id_2)
+
+        if mention["Movie Name 3"]:
+            mention3 = mention["Movie Name 3"]
+            imdb_id_3 = extract_imdb_id(mention["IMDB ID 3"])
+
+            movie_3 = ia.get_movie(imdb_id_3)
+            movie_mentions_dict[imdb_id_3] = movie_3['title']
+            message_text = message_text.replace(mention3, imdb_id_3)
+
+        message["text"] = message_text
+
+
+        # Special corner case for correcting data
+        if conv_id == "504" and message_index == "11" :
+            message["text"] = message_text.replace("@Adam", "Adam")
+
+    return conversations
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -217,8 +280,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     splits = {
-        "train": {"input_file": "train_data_spacy.jsonl", "output_file": "train_data_imdb.jsonl"},
-        "test": {"input_file": "test_data_spacy.jsonl", "output_file": "test_data_imdb.jsonl"}
+        "train": {"input_file": "train_data_imdb.jsonl", "output_file": "train_data_imdb_corrected.jsonl"},
+        "test": {"input_file": "train_data_imdb.jsonl", "output_file": "test_data_imdb_corrected.jsonl"}
     }
     
     for split, metadata in splits.items():
@@ -227,7 +290,8 @@ if __name__ == "__main__":
 
         conversations = load_conversations(split_filepath)
 
-        annotated_conversations = link_mention_to_imdb(conversations, args.imdb_sqlite_path)
+        mentions_data = load_movie_mentions_csv(os.path.join(args.dataset_path, "train_utterances_with_mislabeled_movies_annotated.csv"))
+        annotated_conversations = fix_movie_mentions(conversations, mentions_data, args.imdb_sqlite_path)
 
         out_filepath = os.path.join(args.dataset_path, metadata["output_file"])
         dump_conversations_to_file(annotated_conversations, out_filepath)
