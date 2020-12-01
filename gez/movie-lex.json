@@ -1,0 +1,839 @@
+{
+  "movie_genre": {
+    "name": "movie_genre",
+    "terms": [
+      {
+        "standard_form": "action",
+        "referential_forms": [
+          "thriller",
+          "thriler",
+          "action"
+        ],
+        "id": "action"
+      },
+      {
+        "standard_form": "all genres",
+        "referential_forms": [
+          "all genres"
+        ],
+        "id": "all genres"
+      },
+      {
+        "standard_form": "animation",
+        "referential_forms": [
+          "cartoon",
+          "animations",
+          "animation",
+          "claymation",
+          "3d",
+          "animated"
+        ],
+        "id": "animation"
+      },
+      {
+        "standard_form": "artistic",
+        "referential_forms": [
+          "artsy",
+          "artistic",
+          "obscure"
+        ],
+        "id": "artistic"
+      },
+      {
+        "standard_form": "biographical",
+        "referential_forms": [
+          "bio",
+          "biopic",
+          "biographical"
+        ],
+        "id": "biographical"
+      },
+      {
+        "standard_form": "british",
+        "referential_forms": [
+          "british"
+        ],
+        "id": "british"
+      },
+      {
+        "standard_form": "comedy",
+        "referential_forms": [
+          "comedies",
+          "hilariouse",
+          "laugh",
+          "funny",
+          "comedy",
+          "parody",
+          "funnier",
+          "humor"
+        ],
+        "id": "comedy"
+      },
+      {
+        "standard_form": "crime",
+        "referential_forms": [
+          "drugs",
+          "police",
+          "crime",
+          "lawyer"
+        ],
+        "id": "crime"
+      },
+      {
+        "standard_form": "cute",
+        "referential_forms": [
+          "cute"
+        ],
+        "id": "cute"
+      },
+      {
+        "standard_form": "dark_comedy",
+        "referential_forms": [
+          "dark comedy"
+        ],
+        "id": "dark_comedy"
+      },
+      {
+        "standard_form": "drama",
+        "referential_forms": [
+          "coming of age",
+          "dramas",
+          "drama",
+          "dramatic",
+          "story"
+        ],
+        "id": "drama"
+      },
+      {
+        "standard_form": "fantasy",
+        "referential_forms": [
+          "fantasy"
+        ],
+        "id": "fantasy"
+      },
+      {
+        "standard_form": "horror",
+        "referential_forms": [
+          "horror",
+          "scared",
+          "scariest",
+          "blood",
+          "scary",
+          "gore",
+          "terror",
+          "terrified",
+          "nightmares",
+          "spooky",
+          "creepy",
+          "scarry"
+        ],
+        "id": "horror"
+      },
+      {
+        "standard_form": "musical",
+        "referential_forms": [
+          "musicals"
+        ],
+        "id": "musical"
+      },
+      {
+        "standard_form": "mystery",
+        "referential_forms": [
+          "mysterious",
+          "mystery"
+        ],
+        "id": "mystery"
+      },
+      {
+        "standard_form": "romance",
+        "referential_forms": [
+          "romantic",
+          "romance"
+        ],
+        "id": "romance"
+      },
+      {
+        "standard_form": "Sci-fi",
+        "referential_forms": [
+          "sci - fi",
+          "science",
+          "sci fi"
+        ],
+        "id": "Sci-fi"
+      },
+      {
+        "standard_form": "superhero",
+        "referential_forms": [
+          "super hero",
+          "superhero",
+          "marvel"
+        ],
+        "id": "superhero"
+      },
+      {
+        "standard_form": "suspense",
+        "referential_forms": [
+          "suspense",
+          "suspenseful"
+        ],
+        "id": "suspense"
+      },
+      {
+        "standard_form": "true_story",
+        "referential_forms": [
+          "documentary",
+          "history",
+          "true",
+          "true story",
+          "historical"
+        ],
+        "id": "true_story"
+      }
+    ],
+    "_id2term": {
+      "action": {
+        "standard_form": "action",
+        "referential_forms": [
+          "thriller",
+          "thriler",
+          "action"
+        ],
+        "id": "action"
+      },
+      "all genres": {
+        "standard_form": "all genres",
+        "referential_forms": [
+          "all genres"
+        ],
+        "id": "all genres"
+      },
+      "animation": {
+        "standard_form": "animation",
+        "referential_forms": [
+          "cartoon",
+          "animations",
+          "animation",
+          "claymation",
+          "3d",
+          "animated"
+        ],
+        "id": "animation"
+      },
+      "artistic": {
+        "standard_form": "artistic",
+        "referential_forms": [
+          "artsy",
+          "artistic",
+          "obscure"
+        ],
+        "id": "artistic"
+      },
+      "biographical": {
+        "standard_form": "biographical",
+        "referential_forms": [
+          "bio",
+          "biopic",
+          "biographical"
+        ],
+        "id": "biographical"
+      },
+      "british": {
+        "standard_form": "british",
+        "referential_forms": [
+          "british"
+        ],
+        "id": "british"
+      },
+      "comedy": {
+        "standard_form": "comedy",
+        "referential_forms": [
+          "comedies",
+          "hilariouse",
+          "laugh",
+          "funny",
+          "comedy",
+          "parody",
+          "funnier",
+          "humor"
+        ],
+        "id": "comedy"
+      },
+      "crime": {
+        "standard_form": "crime",
+        "referential_forms": [
+          "drugs",
+          "police",
+          "crime",
+          "lawyer"
+        ],
+        "id": "crime"
+      },
+      "cute": {
+        "standard_form": "cute",
+        "referential_forms": [
+          "cute"
+        ],
+        "id": "cute"
+      },
+      "dark_comedy": {
+        "standard_form": "dark_comedy",
+        "referential_forms": [
+          "dark comedy"
+        ],
+        "id": "dark_comedy"
+      },
+      "drama": {
+        "standard_form": "drama",
+        "referential_forms": [
+          "coming of age",
+          "dramas",
+          "drama",
+          "dramatic",
+          "story"
+        ],
+        "id": "drama"
+      },
+      "fantasy": {
+        "standard_form": "fantasy",
+        "referential_forms": [
+          "fantasy"
+        ],
+        "id": "fantasy"
+      },
+      "horror": {
+        "standard_form": "horror",
+        "referential_forms": [
+          "horror",
+          "scared",
+          "scariest",
+          "blood",
+          "scary",
+          "gore",
+          "terror",
+          "terrified",
+          "nightmares",
+          "spooky",
+          "creepy",
+          "scarry"
+        ],
+        "id": "horror"
+      },
+      "musical": {
+        "standard_form": "musical",
+        "referential_forms": [
+          "musicals"
+        ],
+        "id": "musical"
+      },
+      "mystery": {
+        "standard_form": "mystery",
+        "referential_forms": [
+          "mysterious",
+          "mystery"
+        ],
+        "id": "mystery"
+      },
+      "romance": {
+        "standard_form": "romance",
+        "referential_forms": [
+          "romantic",
+          "romance"
+        ],
+        "id": "romance"
+      },
+      "Sci-fi": {
+        "standard_form": "Sci-fi",
+        "referential_forms": [
+          "sci - fi",
+          "science",
+          "sci fi"
+        ],
+        "id": "Sci-fi"
+      },
+      "superhero": {
+        "standard_form": "superhero",
+        "referential_forms": [
+          "super hero",
+          "superhero",
+          "marvel"
+        ],
+        "id": "superhero"
+      },
+      "suspense": {
+        "standard_form": "suspense",
+        "referential_forms": [
+          "suspense",
+          "suspenseful"
+        ],
+        "id": "suspense"
+      },
+      "true_story": {
+        "standard_form": "true_story",
+        "referential_forms": [
+          "documentary",
+          "history",
+          "true",
+          "true story",
+          "historical"
+        ],
+        "id": "true_story"
+      }
+    },
+    "info": {
+      "action": {
+        "category": "movie_genre",
+        "standard_form": "action",
+        "forms": [
+          "action",
+          "thriler",
+          "thriller"
+        ],
+        "name": "action",
+        "full_name": "action"
+      },
+      "all genres": {
+        "category": "movie_genre",
+        "standard_form": "all genres",
+        "forms": [
+          "all genres"
+        ],
+        "name": "all genres",
+        "full_name": "all genres"
+      },
+      "animation": {
+        "category": "movie_genre",
+        "standard_form": "animation",
+        "forms": [
+          "3D",
+          "animated",
+          "animation",
+          "animations",
+          "cartoon",
+          "claymation"
+        ],
+        "name": "animation",
+        "full_name": "animation"
+      },
+      "artistic": {
+        "category": "movie_genre",
+        "standard_form": "artistic",
+        "forms": [
+          "artsy",
+          "artistic",
+          "obscure"
+        ],
+        "name": "artistic",
+        "full_name": "artistic"
+      },
+      "biographical": {
+        "category": "movie_genre",
+        "standard_form": "biographical",
+        "forms": [
+          "biopic",
+          "bio",
+          "biographical"
+        ],
+        "name": "biographical",
+        "full_name": "biographical"
+      },
+      "british": {
+        "category": "movie_genre",
+        "standard_form": "british",
+        "forms": [
+          "british"
+        ],
+        "name": "british",
+        "full_name": "british"
+      },
+      "comedy": {
+        "category": "movie_genre",
+        "standard_form": "comedy",
+        "forms": [
+          "humor",
+          "comedies",
+          "comedy",
+          "funnier",
+          "funny",
+          "hilariouse",
+          "humor",
+          "laugh",
+          "parody"
+        ],
+        "name": "comedy",
+        "full_name": "comedy"
+      },
+      "crime": {
+        "category": "movie_genre",
+        "standard_form": "crime",
+        "forms": [
+          "crime",
+          "drugs",
+          "lawyer",
+          "police"
+        ],
+        "name": "crime",
+        "full_name": "crime"
+      },
+      "cute": {
+        "category": "movie_genre",
+        "standard_form": "cute",
+        "forms": [
+          "cute"
+        ],
+        "name": "cute",
+        "full_name": "cute"
+      },
+      "dark_comedy": {
+        "category": "movie_genre",
+        "standard_form": "dark_comedy",
+        "forms": [
+          "dark comedy"
+        ],
+        "name": "dark_comedy",
+        "full_name": "dark_comedy"
+      },
+      "drama": {
+        "category": "movie_genre",
+        "standard_form": "drama",
+        "forms": [
+          "drama",
+          "coming of age",
+          "dramas",
+          "dramatic",
+          "story"
+        ],
+        "name": "drama",
+        "full_name": "drama"
+      },
+      "fantasy": {
+        "category": "movie_genre",
+        "standard_form": "fantasy",
+        "forms": [
+          "fantasy"
+        ],
+        "name": "fantasy",
+        "full_name": "fantasy"
+      },
+      "horror": {
+        "category": "movie_genre",
+        "standard_form": "horror",
+        "forms": [
+          "blood",
+          "creepy",
+          "gore",
+          "horror",
+          "nightmares",
+          "scared",
+          "scariest",
+          "scarry",
+          "scary",
+          "spooky",
+          "terrified",
+          "terror"
+        ],
+        "name": "horror",
+        "full_name": "horror"
+      },
+      "musical": {
+        "category": "movie_genre",
+        "standard_form": "musical",
+        "forms": [
+          "musicals"
+        ],
+        "name": "musical",
+        "full_name": "musical"
+      },
+      "mystery": {
+        "category": "movie_genre",
+        "standard_form": "mystery",
+        "forms": [
+          "mysterious",
+          "mystery"
+        ],
+        "name": "mystery",
+        "full_name": "mystery"
+      },
+      "romance": {
+        "category": "movie_genre",
+        "standard_form": "romance",
+        "forms": [
+          "romantic",
+          "romance"
+        ],
+        "name": "romance",
+        "full_name": "romance"
+      },
+      "Sci-fi": {
+        "category": "movie_genre",
+        "standard_form": "Sci-fi",
+        "forms": [
+          "sci fi",
+          "science",
+          "Sci-fi"
+        ],
+        "name": "Sci-fi",
+        "full_name": "Sci-fi"
+      },
+      "superhero": {
+        "category": "movie_genre",
+        "standard_form": "superhero",
+        "forms": [
+          "marvel",
+          "super hero",
+          "superhero"
+        ],
+        "name": "superhero",
+        "full_name": "superhero"
+      },
+      "suspense": {
+        "category": "movie_genre",
+        "standard_form": "suspense",
+        "forms": [
+          "suspense",
+          "suspenseful"
+        ],
+        "name": "suspense",
+        "full_name": "suspense"
+      },
+      "true_story": {
+        "category": "movie_genre",
+        "standard_form": "true_story",
+        "forms": [
+          "true",
+          "historical",
+          "history",
+          "true story",
+          "documentary"
+        ],
+        "name": "true_story",
+        "full_name": "true_story"
+      }
+    },
+    "_id_counter": 0,
+    "_standard_2_id": {
+      "action": "action",
+      "all genres": "all genres",
+      "animation": "animation",
+      "artistic": "artistic",
+      "biographical": "biographical",
+      "british": "british",
+      "comedy": "comedy",
+      "crime": "crime",
+      "cute": "cute",
+      "dark_comedy": "dark_comedy",
+      "drama": "drama",
+      "fantasy": "fantasy",
+      "horror": "horror",
+      "musical": "musical",
+      "mystery": "mystery",
+      "romance": "romance",
+      "Sci-fi": "Sci-fi",
+      "superhero": "superhero",
+      "suspense": "suspense",
+      "true_story": "true_story"
+    },
+    "_all_refs": {
+      "action": [
+        "action"
+      ],
+      "thriler": [
+        "action"
+      ],
+      "thriller": [
+        "action"
+      ],
+      "all genres": [
+        "all genres"
+      ],
+      "3d": [
+        "animation"
+      ],
+      "animated": [
+        "animation"
+      ],
+      "animation": [
+        "animation"
+      ],
+      "animations": [
+        "animation"
+      ],
+      "cartoon": [
+        "animation"
+      ],
+      "claymation": [
+        "animation"
+      ],
+      "artsy": [
+        "artistic"
+      ],
+      "artistic": [
+        "artistic"
+      ],
+      "obscure": [
+        "artistic"
+      ],
+      "biopic": [
+        "biographical"
+      ],
+      "bio": [
+        "biographical"
+      ],
+      "biographical": [
+        "biographical"
+      ],
+      "british": [
+        "british"
+      ],
+      "humor": [
+        "comedy"
+      ],
+      "comedies": [
+        "comedy"
+      ],
+      "comedy": [
+        "comedy"
+      ],
+      "funnier": [
+        "comedy"
+      ],
+      "funny": [
+        "comedy"
+      ],
+      "hilariouse": [
+        "comedy"
+      ],
+      "laugh": [
+        "comedy"
+      ],
+      "parody": [
+        "comedy"
+      ],
+      "crime": [
+        "crime"
+      ],
+      "drugs": [
+        "crime"
+      ],
+      "lawyer": [
+        "crime"
+      ],
+      "police": [
+        "crime"
+      ],
+      "cute": [
+        "cute"
+      ],
+      "dark comedy": [
+        "dark_comedy"
+      ],
+      "drama": [
+        "drama"
+      ],
+      "coming of age": [
+        "drama"
+      ],
+      "dramas": [
+        "drama"
+      ],
+      "dramatic": [
+        "drama"
+      ],
+      "story": [
+        "drama"
+      ],
+      "fantasy": [
+        "fantasy"
+      ],
+      "blood": [
+        "horror"
+      ],
+      "creepy": [
+        "horror"
+      ],
+      "gore": [
+        "horror"
+      ],
+      "horror": [
+        "horror"
+      ],
+      "nightmares": [
+        "horror"
+      ],
+      "scared": [
+        "horror"
+      ],
+      "scariest": [
+        "horror"
+      ],
+      "scarry": [
+        "horror"
+      ],
+      "scary": [
+        "horror"
+      ],
+      "spooky": [
+        "horror"
+      ],
+      "terrified": [
+        "horror"
+      ],
+      "terror": [
+        "horror"
+      ],
+      "musicals": [
+        "musical"
+      ],
+      "mysterious": [
+        "mystery"
+      ],
+      "mystery": [
+        "mystery"
+      ],
+      "romantic": [
+        "romance"
+      ],
+      "romance": [
+        "romance"
+      ],
+      "sci fi": [
+        "Sci-fi"
+      ],
+      "science": [
+        "Sci-fi"
+      ],
+      "sci - fi": [
+        "Sci-fi"
+      ],
+      "marvel": [
+        "superhero"
+      ],
+      "super hero": [
+        "superhero"
+      ],
+      "superhero": [
+        "superhero"
+      ],
+      "suspense": [
+        "suspense"
+      ],
+      "suspenseful": [
+        "suspense"
+      ],
+      "true": [
+        "true_story"
+      ],
+      "historical": [
+        "true_story"
+      ],
+      "history": [
+        "true_story"
+      ],
+      "true story": [
+        "true_story"
+      ],
+      "documentary": [
+        "true_story"
+      ]
+    }
+  }
+}
