@@ -9,6 +9,7 @@ import spacy
 import imdb
 import pdb
 
+from data_loader import load_ner_tagger
 from data_utils import load_conversations, dump_conversations_to_file, popular_actors_list, popular_directors_list
 
 from annotation_utils import DBPedia, process_text
@@ -263,6 +264,23 @@ def fix_movie_mentions(conversations, movie_corrected_mentions, imdb_sqlite_path
 
     return conversations
 
+
+
+def add_genre_mentions(conversations):
+    ner_tagger = load_ner_tagger("gez/genre-phrases.tsv", "gez/movie-lex.json")
+
+    for conversation in tqdm(conversations):
+        for message in conversation["messages"]:
+            tokenized_text = ner_tagger.tokenize_text(message["text"])
+
+            mentions = ner_tagger.tag_tokens(tokenized_text)
+
+            message["genre_mentions"] = mentions
+
+
+    return conversations
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -280,8 +298,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     splits = {
-        "train": {"input_file": "train_data_imdb.jsonl", "output_file": "train_data_imdb_corrected.jsonl"},
-        "test": {"input_file": "train_data_imdb.jsonl", "output_file": "test_data_imdb_corrected.jsonl"}
+        "train": {"input_file": "train_data_imdb_corrected.jsonl", "output_file": "train_data_genre_tagged.jsonl"},
+        "test": {"input_file": "test_data_imdb_corrected.jsonl", "output_file": "test_data_genre_tagged.jsonl"}
     }
     
     for split, metadata in splits.items():
@@ -290,8 +308,7 @@ if __name__ == "__main__":
 
         conversations = load_conversations(split_filepath)
 
-        mentions_data = load_movie_mentions_csv(os.path.join(args.dataset_path, "train_utterances_with_mislabeled_movies_annotated.csv"))
-        annotated_conversations = fix_movie_mentions(conversations, mentions_data, args.imdb_sqlite_path)
+        annotated_conversations = add_genre_mentions(conversations)
 
         out_filepath = os.path.join(args.dataset_path, metadata["output_file"])
         dump_conversations_to_file(annotated_conversations, out_filepath)
