@@ -1,0 +1,501 @@
+id,name
+1,Alfred Hitchcock
+2,David Lean
+3,Jean-Luc Godard
+4,Ingmar Bergman
+5,Stanley Kubrick
+6,Billy Wilder
+7,Luis Buñuel
+8,Federico Fellini
+9,Fritz Lang
+10,Charles Chaplin
+11,Jacques Rivette
+12,Martin Scorsese
+13,Buster Keaton
+14,Akira Kurosawa
+15,Woody Allen
+16,Francis Ford Coppola
+17,Andrei Tarkovsky
+18,Carl Theodor Dreyer
+19,David Lynch
+20,Alain Resnais
+21,Roman Polanski
+22,Jean Renoir
+23,Orson Welles
+24,Werner Herzog
+25,Rainer Werner Fassbinder
+26,Joel Coen
+27,Frank Capra
+28,François Truffaut
+29,Sergei M. Eisenstein
+30,Luchino Visconti
+31,Sidney Lumet
+32,King Vidor
+33,Tim Burton
+34,Michael Powell
+35,F.W. Murnau
+36,Robert Bresson
+37,Peter Greenaway
+38,Michelangelo Antonioni
+39,Kenji Mizoguchi
+40,William Wyler
+41,Steven Spielberg
+42,Sergio Leone
+43,Satyajit Ray
+44,D.W. Griffith
+45,Chantal Akerman
+46,Ernst Lubitsch
+47,John Huston
+48,Jane Campion
+49,Michael Curtiz
+50,Max Ophüls
+51,Peter Watkins
+52,Masaki Kobayashi
+53,Josef von Sternberg
+54,Georges Méliès
+55,Henri-Georges Clouzot
+56,David Cronenberg
+57,Pier Paolo Pasolini
+58,Milos Forman
+59,George Cukor
+60,John Ford
+61,Vittorio De Sica
+62,John Cassavetes
+63,Krzysztof Kieslowski
+64,Mike Nichols
+65,Bernardo Bertolucci
+66,Hsiao-Hsien Hou
+67,Wim Wenders
+68,Erich von Stroheim
+69,Éric Rohmer
+70,Georg Wilhelm Pabst
+71,Abel Gance
+72,Terry Gilliam
+73,Ken Burns
+74,Jean Cocteau
+75,Robert Altman
+76,Howard Hawks
+77,Yasujirô Ozu
+78,Nicholas Ray
+79,Theodoros Angelopoulos
+80,Nicolas Roeg
+81,Joseph L. Mankiewicz
+82,Jean-Pierre Melville
+83,Lars von Trier
+84,Yimou Zhang
+85,Nagisa Ôshima
+86,Elia Kazan
+87,Mike Leigh
+88,Joseph Losey
+89,Claude Chabrol
+90,Kar-Wai Wong
+91,Louis Malle
+92,René Clair
+93,Victor Sjöström
+94,Chuck Jones
+95,Andrzej Wajda
+96,James Cameron
+97,Peter Jackson
+98,Miklós Jancsó
+99,Chris Marker
+100,Jonas Mekas
+101,Alfred Hitchcock
+102,David Lean
+103,Jean-Luc Godard
+104,Ingmar Bergman
+105,Stanley Kubrick
+106,Billy Wilder
+107,Luis Buñuel
+108,Federico Fellini
+109,Fritz Lang
+110,Charles Chaplin
+111,Jacques Rivette
+112,Martin Scorsese
+113,Buster Keaton
+114,Akira Kurosawa
+115,Woody Allen
+116,Francis Ford Coppola
+117,Andrei Tarkovsky
+118,Carl Theodor Dreyer
+119,David Lynch
+120,Alain Resnais
+121,Roman Polanski
+122,Jean Renoir
+123,Orson Welles
+124,Werner Herzog
+125,Rainer Werner Fassbinder
+126,Joel Coen
+127,Frank Capra
+128,François Truffaut
+129,Sergei M. Eisenstein
+130,Luchino Visconti
+131,Sidney Lumet
+132,King Vidor
+133,Tim Burton
+134,Michael Powell
+135,F.W. Murnau
+136,Robert Bresson
+137,Peter Greenaway
+138,Michelangelo Antonioni
+139,Kenji Mizoguchi
+140,William Wyler
+141,Steven Spielberg
+142,Sergio Leone
+143,Satyajit Ray
+144,D.W. Griffith
+145,Chantal Akerman
+146,Ernst Lubitsch
+147,John Huston
+148,Jane Campion
+149,Michael Curtiz
+150,Max Ophüls
+151,Peter Watkins
+152,Masaki Kobayashi
+153,Josef von Sternberg
+154,Georges Méliès
+155,Henri-Georges Clouzot
+156,David Cronenberg
+157,Pier Paolo Pasolini
+158,Milos Forman
+159,George Cukor
+160,John Ford
+161,Vittorio De Sica
+162,John Cassavetes
+163,Krzysztof Kieslowski
+164,Mike Nichols
+165,Bernardo Bertolucci
+166,Hsiao-Hsien Hou
+167,Wim Wenders
+168,Erich von Stroheim
+169,Éric Rohmer
+170,Georg Wilhelm Pabst
+171,Abel Gance
+172,Terry Gilliam
+173,Ken Burns
+174,Jean Cocteau
+175,Robert Altman
+176,Howard Hawks
+177,Yasujirô Ozu
+178,Nicholas Ray
+179,Theodoros Angelopoulos
+180,Nicolas Roeg
+181,Joseph L. Mankiewicz
+182,Jean-Pierre Melville
+183,Lars von Trier
+184,Yimou Zhang
+185,Nagisa Ôshima
+186,Elia Kazan
+187,Mike Leigh
+188,Joseph Losey
+189,Claude Chabrol
+190,Kar-Wai Wong
+191,Louis Malle
+192,René Clair
+193,Victor Sjöström
+194,Chuck Jones
+195,Andrzej Wajda
+196,James Cameron
+197,Peter Jackson
+198,Miklós Jancsó
+199,Chris Marker
+200,Jonas Mekas
+201,Alfred Hitchcock
+202,David Lean
+203,Jean-Luc Godard
+204,Ingmar Bergman
+205,Stanley Kubrick
+206,Billy Wilder
+207,Luis Buñuel
+208,Federico Fellini
+209,Fritz Lang
+210,Charles Chaplin
+211,Jacques Rivette
+212,Martin Scorsese
+213,Buster Keaton
+214,Akira Kurosawa
+215,Woody Allen
+216,Francis Ford Coppola
+217,Andrei Tarkovsky
+218,Carl Theodor Dreyer
+219,David Lynch
+220,Alain Resnais
+221,Roman Polanski
+222,Jean Renoir
+223,Orson Welles
+224,Werner Herzog
+225,Rainer Werner Fassbinder
+226,Joel Coen
+227,Frank Capra
+228,François Truffaut
+229,Sergei M. Eisenstein
+230,Luchino Visconti
+231,Sidney Lumet
+232,King Vidor
+233,Tim Burton
+234,Michael Powell
+235,F.W. Murnau
+236,Robert Bresson
+237,Peter Greenaway
+238,Michelangelo Antonioni
+239,Kenji Mizoguchi
+240,William Wyler
+241,Steven Spielberg
+242,Sergio Leone
+243,Satyajit Ray
+244,D.W. Griffith
+245,Chantal Akerman
+246,Ernst Lubitsch
+247,John Huston
+248,Jane Campion
+249,Michael Curtiz
+250,Max Ophüls
+251,Peter Watkins
+252,Masaki Kobayashi
+253,Josef von Sternberg
+254,Georges Méliès
+255,Henri-Georges Clouzot
+256,David Cronenberg
+257,Pier Paolo Pasolini
+258,Milos Forman
+259,George Cukor
+260,John Ford
+261,Vittorio De Sica
+262,John Cassavetes
+263,Krzysztof Kieslowski
+264,Mike Nichols
+265,Bernardo Bertolucci
+266,Hsiao-Hsien Hou
+267,Wim Wenders
+268,Erich von Stroheim
+269,Éric Rohmer
+270,Georg Wilhelm Pabst
+271,Abel Gance
+272,Terry Gilliam
+273,Ken Burns
+274,Jean Cocteau
+275,Robert Altman
+276,Howard Hawks
+277,Yasujirô Ozu
+278,Nicholas Ray
+279,Theodoros Angelopoulos
+280,Nicolas Roeg
+281,Joseph L. Mankiewicz
+282,Jean-Pierre Melville
+283,Lars von Trier
+284,Yimou Zhang
+285,Nagisa Ôshima
+286,Elia Kazan
+287,Mike Leigh
+288,Joseph Losey
+289,Claude Chabrol
+290,Kar-Wai Wong
+291,Louis Malle
+292,René Clair
+293,Victor Sjöström
+294,Chuck Jones
+295,Andrzej Wajda
+296,James Cameron
+297,Peter Jackson
+298,Miklós Jancsó
+299,Chris Marker
+300,Jonas Mekas
+301,Alfred Hitchcock
+302,David Lean
+303,Jean-Luc Godard
+304,Ingmar Bergman
+305,Stanley Kubrick
+306,Billy Wilder
+307,Luis Buñuel
+308,Federico Fellini
+309,Fritz Lang
+310,Charles Chaplin
+311,Jacques Rivette
+312,Martin Scorsese
+313,Buster Keaton
+314,Akira Kurosawa
+315,Woody Allen
+316,Francis Ford Coppola
+317,Andrei Tarkovsky
+318,Carl Theodor Dreyer
+319,David Lynch
+320,Alain Resnais
+321,Roman Polanski
+322,Jean Renoir
+323,Orson Welles
+324,Werner Herzog
+325,Rainer Werner Fassbinder
+326,Joel Coen
+327,Frank Capra
+328,François Truffaut
+329,Sergei M. Eisenstein
+330,Luchino Visconti
+331,Sidney Lumet
+332,King Vidor
+333,Tim Burton
+334,Michael Powell
+335,F.W. Murnau
+336,Robert Bresson
+337,Peter Greenaway
+338,Michelangelo Antonioni
+339,Kenji Mizoguchi
+340,William Wyler
+341,Steven Spielberg
+342,Sergio Leone
+343,Satyajit Ray
+344,D.W. Griffith
+345,Chantal Akerman
+346,Ernst Lubitsch
+347,John Huston
+348,Jane Campion
+349,Michael Curtiz
+350,Max Ophüls
+351,Peter Watkins
+352,Masaki Kobayashi
+353,Josef von Sternberg
+354,Georges Méliès
+355,Henri-Georges Clouzot
+356,David Cronenberg
+357,Pier Paolo Pasolini
+358,Milos Forman
+359,George Cukor
+360,John Ford
+361,Vittorio De Sica
+362,John Cassavetes
+363,Krzysztof Kieslowski
+364,Mike Nichols
+365,Bernardo Bertolucci
+366,Hsiao-Hsien Hou
+367,Wim Wenders
+368,Erich von Stroheim
+369,Éric Rohmer
+370,Georg Wilhelm Pabst
+371,Abel Gance
+372,Terry Gilliam
+373,Ken Burns
+374,Jean Cocteau
+375,Robert Altman
+376,Howard Hawks
+377,Yasujirô Ozu
+378,Nicholas Ray
+379,Theodoros Angelopoulos
+380,Nicolas Roeg
+381,Joseph L. Mankiewicz
+382,Jean-Pierre Melville
+383,Lars von Trier
+384,Yimou Zhang
+385,Nagisa Ôshima
+386,Elia Kazan
+387,Mike Leigh
+388,Joseph Losey
+389,Claude Chabrol
+390,Kar-Wai Wong
+391,Louis Malle
+392,René Clair
+393,Victor Sjöström
+394,Chuck Jones
+395,Andrzej Wajda
+396,James Cameron
+397,Peter Jackson
+398,Miklós Jancsó
+399,Chris Marker
+400,Jonas Mekas
+401,Alfred Hitchcock
+402,David Lean
+403,Jean-Luc Godard
+404,Ingmar Bergman
+405,Stanley Kubrick
+406,Billy Wilder
+407,Luis Buñuel
+408,Federico Fellini
+409,Fritz Lang
+410,Charles Chaplin
+411,Jacques Rivette
+412,Martin Scorsese
+413,Buster Keaton
+414,Akira Kurosawa
+415,Woody Allen
+416,Francis Ford Coppola
+417,Andrei Tarkovsky
+418,Carl Theodor Dreyer
+419,David Lynch
+420,Alain Resnais
+421,Roman Polanski
+422,Jean Renoir
+423,Orson Welles
+424,Werner Herzog
+425,Rainer Werner Fassbinder
+426,Joel Coen
+427,Frank Capra
+428,François Truffaut
+429,Sergei M. Eisenstein
+430,Luchino Visconti
+431,Sidney Lumet
+432,King Vidor
+433,Tim Burton
+434,Michael Powell
+435,F.W. Murnau
+436,Robert Bresson
+437,Peter Greenaway
+438,Michelangelo Antonioni
+439,Kenji Mizoguchi
+440,William Wyler
+441,Steven Spielberg
+442,Sergio Leone
+443,Satyajit Ray
+444,D.W. Griffith
+445,Chantal Akerman
+446,Ernst Lubitsch
+447,John Huston
+448,Jane Campion
+449,Michael Curtiz
+450,Max Ophüls
+451,Peter Watkins
+452,Masaki Kobayashi
+453,Josef von Sternberg
+454,Georges Méliès
+455,Henri-Georges Clouzot
+456,David Cronenberg
+457,Pier Paolo Pasolini
+458,Milos Forman
+459,George Cukor
+460,John Ford
+461,Vittorio De Sica
+462,John Cassavetes
+463,Krzysztof Kieslowski
+464,Mike Nichols
+465,Bernardo Bertolucci
+466,Hsiao-Hsien Hou
+467,Wim Wenders
+468,Erich von Stroheim
+469,Éric Rohmer
+470,Georg Wilhelm Pabst
+471,Abel Gance
+472,Terry Gilliam
+473,Ken Burns
+474,Jean Cocteau
+475,Robert Altman
+476,Howard Hawks
+477,Yasujirô Ozu
+478,Nicholas Ray
+479,Theodoros Angelopoulos
+480,Nicolas Roeg
+481,Joseph L. Mankiewicz
+482,Jean-Pierre Melville
+483,Lars von Trier
+484,Yimou Zhang
+485,Nagisa Ôshima
+486,Elia Kazan
+487,Mike Leigh
+488,Joseph Losey
+489,Claude Chabrol
+490,Kar-Wai Wong
+491,Louis Malle
+492,René Clair
+493,Victor Sjöström
+494,Chuck Jones
+495,Andrzej Wajda
+496,James Cameron
+497,Peter Jackson
+498,Miklós Jancsó
+499,Chris Marker
+500,Jonas Mekas
