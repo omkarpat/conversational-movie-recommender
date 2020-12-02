@@ -172,8 +172,8 @@ def train_double_heads_lm(model, loader, optimizer, scheduler, step_counter, arg
             save_model_checkpoint(model, args, checkpoint_name)
             logger.info(f"Model checkpoint {checkpoint_name} saved!")
 
-        logger.info(f"Epoch loss: {running_loss.get()}")
-        logger.info(f"Epoch PPL: {ppl.get()}")
+    logger.info(f"Epoch loss: {running_loss.get()}")
+    logger.info(f"Epoch PPL: {ppl.get()}")
 
 
 def evaluate_lm(model, loader, loss_fn, args):
