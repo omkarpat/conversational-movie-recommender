@@ -106,7 +106,7 @@ class RedialTransferTransfoDataset(Dataset):
 
         instance = {}
         instance["input_ids"] = list(chain.from_iterable(sequence))
-        instance["token_type_ids"] = [speaker2 if i % 2 else speaker1 for i, s in enumerate(sequence) for _ in s]
+        instance["token_type_ids"] = [speaker2 if (len(sequence) - i - 1) % 2 else speaker1 for i, s in enumerate(sequence) for _ in s]
         instance["mc_token_ids"] = len(instance["input_ids"]) - 1
 
         if lm_labels:
