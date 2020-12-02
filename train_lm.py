@@ -1,4 +1,6 @@
 import argparse
+import sys
+
 from tqdm.auto import tqdm
 from pprint import pformat
 import os
@@ -14,7 +16,8 @@ from torch.utils.data import DataLoader
 
 from datasets import RedialDialoGPTDataset
 from dataset_utils import (
-    prepare_redial_baseline_dataset, 
+    prepare_redial_baseline_dataset,
+    prepare_redial_knowledge_grounded_dataset,
     get_movie_db_map
     )
 
@@ -34,15 +37,26 @@ logger = logging.getLogger(__file__)
 def prepare_dataloaders(args, tokenizer):
 
     movie_db_map = get_movie_db_map(args.movies_data_path)
-    dataset = prepare_redial_baseline_dataset(
-        args.data_path,
-        tokenizer,
-        movie_db_map,
-        args.data_cache_path
-        )
 
-    train_dataset, test_dataset = RedialDialoGPTDataset(dataset["train"], tokenizer, args), \
-        RedialDialoGPTDataset(dataset["test"], tokenizer, args)
+    if args.configuration == "baseline":
+        dataset = prepare_redial_baseline_dataset(
+            args.data_path,
+            tokenizer,
+            movie_db_map,
+            args.data_cache_path
+            )
+
+        train_dataset, test_dataset = RedialDialoGPTDataset(dataset["train"], tokenizer, args), \
+            RedialDialoGPTDataset(dataset["test"], tokenizer, args)
+    else:
+        dataset = prepare_redial_knowledge_grounded_dataset(
+            args.data_path,
+            tokenizer,
+            movie_db_map,
+            args.data_cache_path
+        )
+        # This code path not fully implemented
+        sys.exit(1)
 
 
     collate_fn = lambda batch: collate_batch_elements(batch, tokenizer, args.device)
@@ -162,6 +176,12 @@ def save_model_config(tokenizer, args):
 
 def get_argparser():
     parser = argparse.ArgumentParser()
+
+    parser.add_argument('--configuration',
+        default='baseline',
+        choices=['baseline', 'knowledge_grounded']
+    )
+
     parser.add_argument('--model_checkpoint',
         default="microsoft/DialoGPT-medium",
         help="The model checkpoint to use"
