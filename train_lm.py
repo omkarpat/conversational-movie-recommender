@@ -146,7 +146,7 @@ def train_double_heads_lm(model, loader, optimizer, scheduler, step_counter, arg
 
         (lm_loss), (mc_loss), *_ = model(
             input_ids, token_type_ids=token_type_ids, mc_token_ids=mc_token_ids,
-            mc_labels=mc_labels, labels=lm_labels
+            mc_labels=mc_labels, lm_labels=lm_labels
         )
 
         loss = (lm_loss * args.lm_coef + mc_loss * args.mc_coef) / args.gradient_accumulation_steps
