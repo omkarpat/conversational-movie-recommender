@@ -150,7 +150,7 @@ def train_double_heads_lm(model, loader, optimizer, scheduler, step_counter, arg
         )
 
         loss = (lm_loss * args.lm_coef + mc_loss * args.mc_coef) / args.gradient_accumulation_steps
-
+        running_loss.add(float(loss))
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_norm)
 
