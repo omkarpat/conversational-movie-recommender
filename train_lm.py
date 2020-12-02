@@ -154,13 +154,15 @@ def train_double_heads_lm(model, loader, optimizer, scheduler, step_counter, arg
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_norm)
 
+        if (i + 1) % args.log_every_n == 0:
+            logger.info(
+                f"Iteration {i}: [Running Loss: {running_loss.get()};Running PPL: {ppl.get()}]")
+
         if i % args.gradient_accumulation_steps == 0:
             optimizer.step()
             optimizer.zero_grad()
 
-        if (i + 1) % args.log_every_n == 0:
-            logger.info(
-                f"Iteration {i}: [Running Loss: {running_loss.get()};Running PPL: {ppl.get()}]")
+
 
         scheduler.step()
         step_counter.step()
