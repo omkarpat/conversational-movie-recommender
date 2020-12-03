@@ -137,6 +137,16 @@ class RedialTransferTransfoDataset(Dataset):
         tokenized_candidates = [self.tokenizer.encode(candidate) for candidate in candidates]
         tokenized_candidates.append(tokenized_response)
 
+        tokenized_knowledge = []
+
+        for (type, item) in knowledge:
+            print(type, item)
+            start_tag = f"<{type}>"
+
+            end_tag = f"</{type}>"
+            tokenized_knowledge.append(self.tokenizer.convert_tokens_to_ids(start_tag))
+            tokenized_knowledge.extend(self.tokenizer.encode(item))
+            tokenized_knowledge.append(self.tokenizer.convert_tokens_to_ids(end_tag))
         instances = []
 
         for j, candidate in enumerate(tokenized_candidates):
