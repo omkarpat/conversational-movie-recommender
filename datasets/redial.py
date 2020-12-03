@@ -150,7 +150,7 @@ class RedialTransferTransfoDataset(Dataset):
 
         for j, candidate in enumerate(tokenized_candidates):
             lm_labels = bool(j == self.num_candidates - 1)
-            instance = self.build_input_from_segments(tokenized_context, candidate, [], self.tokenizer, self.special_tokens, lm_labels)
+            instance = self.build_input_from_segments(tokenized_context, candidate, tokenized_knowledge, self.tokenizer, self.special_tokens, lm_labels)
             instances.append(instance)
 
         return instances
