@@ -81,6 +81,8 @@ def prepare_redial_knowledge_grounded_split(
         split_path,
         movie_db_map
 ):
+    print("\nLoading data", split_path)
+
     with open(split_path, 'r') as split_file:
         split_conversations = split_file.read().splitlines()
 
@@ -207,7 +209,8 @@ def prepare_redial_knowledge_grounded_dataset(
     redial_path,
     tokenizer,
     movie_db_map,
-    dataset_cache_path='kg_dataset_cache.pkl'
+    dataset_cache_path='kg_dataset_cache.pkl',
+    split_files=None
 ):
     dataset = try_load_pickle(dataset_cache_path)
 
@@ -215,10 +218,11 @@ def prepare_redial_knowledge_grounded_dataset(
         print("Cached data already found, returning")
         return dataset
 
-    split_files = {
-        'train': 'train_data_genre_tagged.jsonl',
-        'test': 'test_data_genre_tagged.jsonl'
-    }
+    if split_files is None:
+        split_files = {
+            'train': 'train_data_genre_tagged.jsonl',
+            'test': 'test_data_genre_tagged.jsonl'
+        }
 
     dataset = {}
 
