@@ -110,7 +110,6 @@ def decode_sequences(input_ids, token_type_ids, model, tokenizer, args):
         for j in range(args.max_length):  # Add trailing tokens
             expanded_tok_type_ids.append(expanded_tok_type_ids[-1])
         expanded_tok_type_ids = torch.tensor(expanded_tok_type_ids).to(args.device)
-        patience = 10
         for j in range(args.max_length):
             prefix_input_seq = torch.tensor(tokenizer.encode(context) + current_output).unsqueeze(0)
             truncated_tok_type_ids = expanded_tok_type_ids[:prefix_input_seq.shape[-1]].unsqueeze(0)
@@ -124,7 +123,7 @@ def decode_sequences(input_ids, token_type_ids, model, tokenizer, args):
 
             prev = torch.topk(probs, 1)[1] if args.no_sample else torch.multinomial(probs, 1)
             if prev.item() in special_tokens_ids:
-                patience = 10
+                patience = 3
                 while prev.item() in special_tokens_ids:
                     if probs.max().item() == 1 or patience == 0:
                         # Disabled this rather noisy warning
