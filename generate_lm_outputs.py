@@ -137,8 +137,7 @@ def decode_sequences(input_ids, token_type_ids, model, tokenizer, args):
 
         output = tokenizer.decode(current_output)
         outputs.append(output.replace('\n', '') + '\n')
-        print("Context", context)
-        print(outputs[-1])
+
     return outputs
 
 
