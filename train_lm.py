@@ -17,6 +17,7 @@ from dataset_utils import (
 from datasets import (RedialDialoGPTDataset, RedialTransferTransfoDataset)
 from train_utils import (
     TransferTransfoConstants,
+    TransferTransfoWithKnowledgeConstants,
     collate_batch_elements,
     collate_transfertransfo_batch_elements,
     save_model_checkpoint,
@@ -65,7 +66,6 @@ def prepare_dataloaders(args, tokenizer):
             movie_db_map,
             args.data_cache_path
         )
-        # This code path not fully implemented
         train_dataset = RedialTransferTransfoDataset(dataset["train"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args)
         test_dataset = RedialTransferTransfoDataset(dataset["test"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args)
 
@@ -281,10 +281,10 @@ def setup_knowledge_grounded_tokenizer(args):
     tokenizer = GPT2Tokenizer.from_pretrained(args.model_checkpoint)
 
     logger.info("Adding special tokens to tokenizer:")
-    logger.info(TransferTransfoConstants.ADDITIONAL_TOKENS + list(TransferTransfoConstants.ATTR_TO_SPECIAL_TOKEN.items()))
+    logger.info(TransferTransfoWithKnowledgeConstants.ADDITIONAL_TOKENS + list(TransferTransfoWithKnowledgeConstants.ATTR_TO_SPECIAL_TOKEN.items()))
     # Add special tokens
-    num_added_norm_tokens = tokenizer.add_tokens(TransferTransfoConstants.ADDITIONAL_TOKENS)
-    num_added_special_tokens = tokenizer.add_special_tokens(TransferTransfoConstants.ATTR_TO_SPECIAL_TOKEN)
+    num_added_norm_tokens = tokenizer.add_tokens(TransferTransfoWithKnowledgeConstants.ADDITIONAL_TOKENS)
+    num_added_special_tokens = tokenizer.add_special_tokens(TransferTransfoWithKnowledgeConstants.ATTR_TO_SPECIAL_TOKEN)
 
     new_vocab_size = len(tokenizer.encoder) + num_added_norm_tokens + num_added_special_tokens
     # Return tokenizer and new vocabulary size

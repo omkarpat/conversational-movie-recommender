@@ -18,6 +18,19 @@ class TransferTransfoConstants:
 
     ADDITIONAL_TOKENS = ["_nofact"]
 
+class TransferTransfoWithKnowledgeConstants(object):
+    SPECIAL_TOKENS = TransferTransfoConstants.SPECIAL_TOKENS
+    MODEL_INPUTS = TransferTransfoConstants.MODEL_INPUTS
+    PADDED_INPUTS = TransferTransfoConstants.PADDED_INPUTS
+
+    ADDITIONAL_TOKENS = TransferTransfoConstants.ADDITIONAL_TOKENS + [
+        "<person>", "</person>",
+        "<genre>", "</genre>",
+        "<movie_title>", "</movie_title>"
+    ]
+
+    ATTR_TO_SPECIAL_TOKEN = TransferTransfoConstants.ATTR_TO_SPECIAL_TOKEN
+
 
 def collate_batch_elements(batch, tokenizer, device, pad_left=False):
 
