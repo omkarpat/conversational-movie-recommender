@@ -64,7 +64,8 @@ def prepare_dataloaders(args, tokenizer):
             args.data_path,
             tokenizer,
             movie_db_map,
-            args.data_cache_path
+            args.data_cache_path,
+            split_files={"train": args.train_file, "test": args.eval_file}
         )
         train_dataset = RedialTransferTransfoDataset(dataset["train"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args)
         test_dataset = RedialTransferTransfoDataset(dataset["test"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args)
@@ -317,6 +318,14 @@ def get_argparser():
     parser.add_argument('--movies_data_path',
         default="redial/movies_with_mentions.csv",
         help="Path to movie mentions file"
+    )
+    parser.add_argument('--train-file',
+        default="train_data_genre_tagged.jsonl",
+        help="Name of train jsonl file."
+    )
+    parser.add_argument('--eval-file',
+        default="test_data_genre_tagged.jsonl",
+        help="Name of test jsonl file."
     )
     parser.add_argument('--data_cache_path',
         default="redial_dataset_cache.pkl",

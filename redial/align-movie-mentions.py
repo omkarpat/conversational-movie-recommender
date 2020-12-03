@@ -60,7 +60,7 @@ def main():
 
     for split_name in ["test", "train"]:
         new_lines = []
-        fname = f"{split_name}_data_genre_tagged.jsonl"
+        fname = f"{split_name}_data_swda_tagged.jsonl"
         print("loading", fname)
         print("processing ...")
         for line in read_lines(fname):
@@ -94,10 +94,9 @@ def main():
                                         "imdb_id": kf_movie_id
                                     })
                             p["known for"] = new_kf_movies
-
                         movie[attr_name] = new_vals
-
                     new_mentions[mid] = movie
+
                 else:
                     # blindly copy whatever is there.
                     new_mentions[mid] = d["movieMentions"][mid]
