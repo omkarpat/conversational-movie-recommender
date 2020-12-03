@@ -1,1 +1,1 @@
-from .redial import RedialDialoGPTDataset
+from .redial import RedialDialoGPTDataset, RedialTransferTransfoDataset

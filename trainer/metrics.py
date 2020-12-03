@@ -17,3 +17,29 @@ class RunningMetric(Metric):
 
     def get(self):
         return self.current_value
+
+
+class RunningLambdaMetric(RunningMetric):
+    def __init__(self, fn):
+        self.func = fn
+        super().__init__()
+
+    def add(self, *args, **kwargs):
+        self._add(float(self.func(*args, **kwargs)))
+
+class MetricLambda(Metric):
+    def __init__(self, fn, metric):
+        self.func = fn
+        self.metric = metric
+
+    def get(self):
+        return self.func(self.metric.get())
+
+class Accuracy(RunningLambdaMetric):
+    def __init__(self):
+        super().__init__(self._compute_accuracy)
+
+    def _compute_accuracy(self, logits, labels):
+        predictions = logits.argmax(dim=-1)
+
+        return (predictions == labels).mean()

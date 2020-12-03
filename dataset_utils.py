@@ -91,6 +91,8 @@ def prepare_redial_knowledge_grounded_split(
     # Pattern for mathching the year portion: (2007)
     movie_title_year_pattern = re.compile(r"\s+\(\d+\)")
 
+    num_examples_using_knowledge = 0
+
     for conversation_str in tqdm(split_conversations):
         conversation = json.loads(conversation_str)
 
@@ -136,12 +138,17 @@ def prepare_redial_knowledge_grounded_split(
                     response_knowledge
                 ))
 
+                if len(response_knowledge) > 0:
+                    num_examples_using_knowledge += 1
+
                 context = context + [response]
                 response = ""
                 response_knowledge = []
             else:
                 # We looked ahead and saw another follow-on response
                 response += processed_text + " . "
+    print("Num examples:", len(examples))
+    print("Num examples using knowledge: ", num_examples_using_knowledge)
 
     return examples
 
