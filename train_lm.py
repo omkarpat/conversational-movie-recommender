@@ -75,7 +75,7 @@ def prepare_dataloaders(args, tokenizer):
         )
         # This code path not fully implemented
         train_dataset = RedialTransferTransfoDataset(dataset["train"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args)
-        test_dataset = RedialTransferTransfoDataset(dataset["test"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args),
+        test_dataset = RedialTransferTransfoDataset(dataset["test"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args)
 
         def collate_fn(batch):
             return collate_transfertransfo_batch_elements(batch, tokenizer, args)
@@ -250,11 +250,13 @@ def train_knowledge_grounded_lm(model, loaders, optimizer, loss_fn, scheduler, a
     for epoch in range(args.n_epochs):
 
         train_double_heads_lm(model, train_loader, optimizer, scheduler, step_counter, args)
-        evaluate_double_heads_lm(model, val_loader, loss_fn, args)
         epoch_model = f"{args.experiment_name}_epoch_{epoch + 1}"
         save_full_model(model, args, epoch_model)
         logger.info(f"Model {epoch_model} saved!")
         logger.info(f"Epoch {epoch + 1} completed!\n")
+
+        evaluate_double_heads_lm(model, val_loader, loss_fn, args)
+
 
     if args.n_epochs < 1:
         evaluate_double_heads_lm(model, val_loader, loss_fn, args)
