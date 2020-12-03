@@ -106,10 +106,11 @@ def pad_batch_items(batch_items, pad_token_map, padded_inputs, pad_left):
     return batch_items        
 
 
-def save_model_config(config, args):
+def save_model_config_and_tokenizer(config, tokenizer, args):
     config_path = os.path.join(args.experiment_path, args.experiment_name)
     os.makedirs(config_path, exist_ok=True)
     config.save_pretrained(config_path)
+    tokenizer.save_pretrained(config_path)
 
 
 def save_model_checkpoint(model, args, checkpoint_name="checkpoint.pt"):
@@ -119,8 +120,9 @@ def save_model_checkpoint(model, args, checkpoint_name="checkpoint.pt"):
     torch.save(model.state_dict(), checkpoint_file_path)
 
 
-def save_full_model(model, args, model_name):
+def save_full_model(model, tokenizer, args, model_name):
     checkpoint_path = os.path.join(args.experiment_path, args.experiment_name, model_name)
     
     model.save_pretrained(checkpoint_path)
+    tokenizer.save_pretrained(checkpoint_path)
 

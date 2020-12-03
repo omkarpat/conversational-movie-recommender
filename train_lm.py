@@ -1,38 +1,30 @@
 import argparse
-import sys
-
-from tqdm.auto import tqdm
-from pprint import pformat
-import os
 import logging
-import json
-
-from transformers import GPT2Tokenizer, AdamW
-
 import math
+from pprint import pformat
+
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
+from tqdm.auto import tqdm
+from transformers import GPT2Tokenizer, AdamW
 
-from datasets import (RedialDialoGPTDataset, RedialTransferTransfoDataset)
 from dataset_utils import (
     prepare_redial_baseline_dataset,
     prepare_redial_knowledge_grounded_dataset,
     get_movie_db_map
-    )
-
-from trainer.counter import GlobalStepCounter
-from trainer.metrics import RunningMetric, MetricLambda, RunningLambdaMetric
-from trainer.scheduler import PiecewiseLinearLR
-
+)
+from datasets import (RedialDialoGPTDataset, RedialTransferTransfoDataset)
 from train_utils import (
     TransferTransfoConstants,
     collate_batch_elements,
     collate_transfertransfo_batch_elements,
-    save_model_config,
     save_model_checkpoint,
-    save_full_model
-)
+    save_full_model,
+    save_model_config_and_tokenizer)
+from trainer.counter import GlobalStepCounter
+from trainer.metrics import RunningMetric, MetricLambda, RunningLambdaMetric
+from trainer.scheduler import PiecewiseLinearLR
 
 logger = logging.getLogger(__file__)
 
@@ -122,7 +114,7 @@ def train_lm(model, loader, optimizer, scheduler, step_counter, args):
         if (i + 1) % args.log_every_n == 0:
             logger.info(f"Iteration {i + 1}: [Running Loss: {running_loss.get()};Running PPL: {math.exp(running_loss.get())}]")
 
-        
+
         step_counter.step()
 
         if step_counter.get() % args.checkpoint_every_n == 0:
@@ -235,7 +227,7 @@ def train_baseline_lm(model, loaders, optimizer, loss_fn, scheduler, args):
         train_lm(model, train_loader, optimizer, scheduler, step_counter, args)        
         evaluate_lm(model, test_loader, loss_fn, args)
         epoch_model = f"{args.experiment_name}_epoch_{i + 1}"
-        save_full_model(model, args, epoch_model)
+        save_full_model(model, tokenizer, args, epoch_model)
         logger.info(f"Model {epoch_model} saved!")
         logger.info(f"Epoch {i + 1} completed!\n")
 
@@ -251,7 +243,7 @@ def train_knowledge_grounded_lm(model, loaders, optimizer, loss_fn, scheduler, a
 
         train_double_heads_lm(model, train_loader, optimizer, scheduler, step_counter, args)
         epoch_model = f"{args.experiment_name}_epoch_{epoch + 1}"
-        save_full_model(model, args, epoch_model)
+        save_full_model(model, tokenizer, args, epoch_model)
         logger.info(f"Model {epoch_model} saved!")
         logger.info(f"Epoch {epoch + 1} completed!\n")
 
@@ -439,7 +431,8 @@ if __name__ == "__main__":
     loss_fn = nn.CrossEntropyLoss(ignore_index=-100)  # used for computing validation loss
     model.to(args.device)
 
-    save_model_config(model.config, args)
+
+    save_model_config_and_tokenizer(model.config, tokenizer, args)
 
     if args.configuration == "baseline":
         train_baseline_lm(model, (train_loader, test_loader), optimizer, loss_fn, scheduler, args)
