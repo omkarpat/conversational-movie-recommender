@@ -43,7 +43,7 @@ def prepare_knowledge_grounded_dataloader(args, tokenizer):
     def collate_fn(batch):
         return collate_transfertransfo_batch_elements(batch, tokenizer, args)
 
-    test_loader = DataLoader(test_dataset, batch_size=args.test_batch_size, collate_fn=collate_fn)
+    test_loader = DataLoader(test_dataset, batch_size=args.test_batch_size, collate_fn=collate_fn, shuffle=False)
 
     return test_loader
 
@@ -137,6 +137,8 @@ def decode_sequences(input_ids, token_type_ids, model, tokenizer, args):
 
         output = tokenizer.decode(current_output)
         outputs.append(output.replace('\n', '') + '\n')
+        print("Context", context)
+        print(outputs[-1])
     return outputs
 
 
