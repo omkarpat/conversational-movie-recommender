@@ -208,7 +208,7 @@ def evaluate_double_heads_lm(model, val_loader, loss_fn, args):
     ppl = MetricLambda(math.exp, running_nll)
 
     with torch.no_grad():
-        for i, batch in tqdm(enumerate(val_loader)):
+        for i, batch in enumerate(tqdm(val_loader)):
             batch = tuple(input_tensor.to(args.device) for input_tensor in batch)
             input_ids, mc_token_ids, lm_labels, mc_labels, token_type_ids = batch
 
