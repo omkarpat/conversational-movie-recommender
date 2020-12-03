@@ -93,9 +93,7 @@ def dump_item(val, max_n=None):
 
 
 
-all_movies = {}
-all_people = {}
-all_companies = {}
+
 
 def main():
     print("loading data ...")
