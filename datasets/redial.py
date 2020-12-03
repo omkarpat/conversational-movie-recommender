@@ -140,7 +140,6 @@ class RedialTransferTransfoDataset(Dataset):
         tokenized_knowledge = []
 
         for (type, item) in knowledge:
-            print(type, item)
             start_tag = f"<{type}>"
 
             end_tag = f"</{type}>"
