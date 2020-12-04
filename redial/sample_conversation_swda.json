@@ -1,0 +1,574 @@
+{
+  "movieMentions": {
+    "84779": "The Triplets of Belleville (2003)",
+    "122159": "Mary and Max (2009)",
+    "151313": "A Scanner Darkly  (2006)",
+    "165710": "The Boss Baby (2017)",
+    "191602": "Waking Life (2001)",
+    "203371": "Final Fantasy: The Spirits Within (2001)"
+  },
+  "respondentQuestions": {
+    "84779": {
+      "suggested": 0,
+      "seen": 1,
+      "liked": 1
+    },
+    "122159": {
+      "suggested": 0,
+      "seen": 1,
+      "liked": 1
+    },
+    "151313": {
+      "suggested": 0,
+      "seen": 1,
+      "liked": 1
+    },
+    "165710": {
+      "suggested": 1,
+      "seen": 0,
+      "liked": 1
+    },
+    "191602": {
+      "suggested": 0,
+      "seen": 1,
+      "liked": 1
+    },
+    "203371": {
+      "suggested": 1,
+      "seen": 0,
+      "liked": 1
+    }
+  },
+  "messages": [
+    {
+      "timeOffset": 0,
+      "text": "Hi there, how are you? I'm looking for movie recommendations",
+      "senderWorkerId": 0,
+      "messageId": 1021,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "qw",
+          "label_name": "Wh-Question"
+        },
+        {
+          "label": "sd",
+          "label_name": "Statement-non-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 15,
+      "text": "I am doing okay. What kind of movies do you like?",
+      "senderWorkerId": 1,
+      "messageId": 1022,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "sd",
+          "label_name": "Statement-non-opinion"
+        },
+        {
+          "label": "qw",
+          "label_name": "Wh-Question"
+        }
+      ]
+    },
+    {
+      "timeOffset": 66,
+      "text": "I like animations like @84779 and @191602",
+      "senderWorkerId": 0,
+      "messageId": 1023,
+      "spacy_mentions": [
+        {
+          "surface": "@84779",
+          "type": "ORG"
+        }
+      ],
+      "imdb_entries": [],
+      "genre_mentions": [
+        {
+          "ent_id": [
+            "animation"
+          ],
+          "standard_form": [
+            "animation"
+          ],
+          "words": [
+            "animations"
+          ],
+          "start_idx": 2,
+          "end_idx": 3,
+          "ent_type": "movie_genre"
+        }
+      ],
+      "swbd_da": [
+        {
+          "label": "sd",
+          "label_name": "Statement-non-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 86,
+      "text": "I also enjoy @122159",
+      "senderWorkerId": 0,
+      "messageId": 1024,
+      "spacy_mentions": [
+        {
+          "surface": "@122159",
+          "type": "ORG"
+        }
+      ],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "sd",
+          "label_name": "Statement-non-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 95,
+      "text": "Anything artistic",
+      "senderWorkerId": 0,
+      "messageId": 1025,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [
+        {
+          "ent_id": [
+            "artistic"
+          ],
+          "standard_form": [
+            "artistic"
+          ],
+          "words": [
+            "artistic"
+          ],
+          "start_idx": 1,
+          "end_idx": 2,
+          "ent_type": "movie_genre"
+        }
+      ],
+      "swbd_da": [
+        {
+          "label": "sv",
+          "label_name": "Statement-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 135,
+      "text": "You might like @165710 that was a good movie.",
+      "senderWorkerId": 1,
+      "messageId": 1026,
+      "spotlight_mentions": [],
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "sv",
+          "label_name": "Statement-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 151,
+      "text": "What's it about?",
+      "senderWorkerId": 0,
+      "messageId": 1027,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "qw",
+          "label_name": "Wh-Question"
+        }
+      ]
+    },
+    {
+      "timeOffset": 207,
+      "text": "It has Alec Baldwin it is about a baby that works for a company and gets adopted it is very funny",
+      "senderWorkerId": 1,
+      "messageId": 1028,
+      "spotlight_mentions": [
+        {
+          "@URI": "http://dbpedia.org/resource/Alec_Baldwin",
+          "@support": "1426",
+          "@types": "Http://xmlns.com/foaf/0.1/Person,Wikidata:Q5,Wikidata:Q24229398,Wikidata:Q215627,DUL:NaturalPerson,DUL:Agent,Schema:Person,DBpedia:Person,DBpedia:Agent",
+          "@surfaceForm": "alec baldwin",
+          "@offset": "7",
+          "@similarityScore": "1.0",
+          "@percentageOfSecondRank": "0.0"
+        }
+      ],
+      "spacy_mentions": [
+        {
+          "surface": "alec baldwin",
+          "type": "PERSON"
+        }
+      ],
+      "imdb_entries": [
+        "<?xml version=\"1.0\"?>\n<!DOCTYPE person SYSTEM \"https://imdbpy.github.io/static/dtd/imdbpy.dtd\">\n\n<person id=\"8483733\" access-system=\"s3\"><personid key=\"personID\" type=\"int\">8483733</personid><name>Alec Baldwin</name><primary-profession key=\"primary profession\">editorial_department,editor,producer</primary-profession><known-for key=\"known for\">3321642,12824922,6889042</known-for><canonical-name key=\"canonical name\">Baldwin, Alec</canonical-name><long-imdb-name key=\"long imdb name\">Alec Baldwin</long-imdb-name><long-imdb-canonical-name key=\"long imdb canonical name\">Baldwin, Alec</long-imdb-canonical-name></person>"
+      ],
+      "genre_mentions": [
+        {
+          "ent_id": [
+            "comedy"
+          ],
+          "standard_form": [
+            "comedy"
+          ],
+          "words": [
+            "funny"
+          ],
+          "start_idx": 20,
+          "end_idx": 21,
+          "ent_type": "movie_genre"
+        }
+      ],
+      "swbd_da": [
+        {
+          "label": "sv",
+          "label_name": "Statement-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 238,
+      "text": "That seems like a nice comedy",
+      "senderWorkerId": 0,
+      "messageId": 1029,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [
+        {
+          "ent_id": [
+            "comedy"
+          ],
+          "standard_form": [
+            "comedy"
+          ],
+          "words": [
+            "comedy"
+          ],
+          "start_idx": 5,
+          "end_idx": 6,
+          "ent_type": "movie_genre"
+        }
+      ],
+      "swbd_da": [
+        {
+          "label": "sv",
+          "label_name": "Statement-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 272,
+      "text": "Do you have any animated recommendations that are a bit more dramatic? Like @151313 for example",
+      "senderWorkerId": 0,
+      "messageId": 1030,
+      "spacy_mentions": [
+        {
+          "surface": "@151313",
+          "type": "ORG"
+        }
+      ],
+      "imdb_entries": [],
+      "genre_mentions": [
+        {
+          "ent_id": [
+            "drama"
+          ],
+          "standard_form": [
+            "drama"
+          ],
+          "words": [
+            "dramatic"
+          ],
+          "start_idx": 11,
+          "end_idx": 12,
+          "ent_type": "movie_genre"
+        },
+        {
+          "ent_id": [
+            "animation"
+          ],
+          "standard_form": [
+            "animation"
+          ],
+          "words": [
+            "animated"
+          ],
+          "start_idx": 4,
+          "end_idx": 5,
+          "ent_type": "movie_genre"
+        }
+      ],
+      "swbd_da": [
+        {
+          "label": "qy",
+          "label_name": "Yes-No-Question"
+        },
+        {
+          "label": "na",
+          "label_name": "Affirmative non-yes answers"
+        }
+      ]
+    },
+    {
+      "timeOffset": 327,
+      "text": "I like comedies but I prefer films with a little more depth",
+      "senderWorkerId": 0,
+      "messageId": 1031,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [
+        {
+          "ent_id": [
+            "comedy"
+          ],
+          "standard_form": [
+            "comedy"
+          ],
+          "words": [
+            "comedies"
+          ],
+          "start_idx": 2,
+          "end_idx": 3,
+          "ent_type": "movie_genre"
+        }
+      ],
+      "swbd_da": [
+        {
+          "label": "sd",
+          "label_name": "Statement-non-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 467,
+      "text": "That is a tough one but I will remember something",
+      "senderWorkerId": 1,
+      "messageId": 1032,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "sd",
+          "label_name": "Statement-non-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 509,
+      "text": "@203371 was a good one",
+      "senderWorkerId": 1,
+      "messageId": 1033,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "sd",
+          "label_name": "Statement-non-opinion"
+        }
+      ]
+    },
+    {
+      "timeOffset": 564,
+      "text": "Ooh that seems cool! Thanks for the input. I'm ready to submit if you are.",
+      "senderWorkerId": 0,
+      "messageId": 1034,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "ba",
+          "label_name": "Appreciation"
+        },
+        {
+          "label": "ft",
+          "label_name": "Thanking"
+        },
+        {
+          "label": "fc",
+          "label_name": "Conventional-closing"
+        }
+      ]
+    },
+    {
+      "timeOffset": 571,
+      "text": "It is animated, sci fi, and has action",
+      "senderWorkerId": 1,
+      "messageId": 1035,
+      "spotlight_mentions": [],
+      "spacy_mentions": [
+        {
+          "surface": "sci fi",
+          "type": "ORG"
+        }
+      ],
+      "imdb_entries": [],
+      "genre_mentions": [
+        {
+          "ent_id": [
+            "animation"
+          ],
+          "standard_form": [
+            "animation"
+          ],
+          "words": [
+            "animated"
+          ],
+          "start_idx": 2,
+          "end_idx": 3,
+          "ent_type": "movie_genre"
+        },
+        {
+          "ent_id": [
+            "Sci-fi"
+          ],
+          "standard_form": [
+            "Sci-fi"
+          ],
+          "words": [
+            "sci",
+            "fi"
+          ],
+          "start_idx": 4,
+          "end_idx": 6,
+          "ent_type": "movie_genre"
+        },
+        {
+          "ent_id": [
+            "action"
+          ],
+          "standard_form": [
+            "action"
+          ],
+          "words": [
+            "action"
+          ],
+          "start_idx": 9,
+          "end_idx": 10,
+          "ent_type": "movie_genre"
+        }
+      ],
+      "swbd_da": [
+        {
+          "label": "fc",
+          "label_name": "Conventional-closing"
+        }
+      ]
+    },
+    {
+      "timeOffset": 579,
+      "text": "Glad I could help",
+      "senderWorkerId": 1,
+      "messageId": 1036,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "fc",
+          "label_name": "Conventional-closing"
+        }
+      ]
+    },
+    {
+      "timeOffset": 581,
+      "text": "Nice",
+      "senderWorkerId": 0,
+      "messageId": 1037,
+      "spotlight_mentions": [],
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "fc",
+          "label_name": "Conventional-closing"
+        }
+      ]
+    },
+    {
+      "timeOffset": 591,
+      "text": "Take care, cheers!",
+      "senderWorkerId": 0,
+      "messageId": 1038,
+      "spotlight_mentions": [],
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "fc",
+          "label_name": "Conventional-closing"
+        }
+      ]
+    },
+    {
+      "timeOffset": 608,
+      "text": "bye",
+      "senderWorkerId": 1,
+      "messageId": 1039,
+      "spacy_mentions": [],
+      "imdb_entries": [],
+      "genre_mentions": [],
+      "swbd_da": [
+        {
+          "label": "fc",
+          "label_name": "Conventional-closing"
+        }
+      ]
+    }
+  ],
+  "conversationId": "391",
+  "respondentWorkerId": 1,
+  "initiatorWorkerId": 0,
+  "initiatorQuestions": {
+    "84779": {
+      "suggested": 0,
+      "seen": 1,
+      "liked": 1
+    },
+    "122159": {
+      "suggested": 0,
+      "seen": 1,
+      "liked": 1
+    },
+    "151313": {
+      "suggested": 0,
+      "seen": 1,
+      "liked": 1
+    },
+    "165710": {
+      "suggested": 1,
+      "seen": 0,
+      "liked": 1
+    },
+    "191602": {
+      "suggested": 0,
+      "seen": 1,
+      "liked": 1
+    },
+    "203371": {
+      "suggested": 1,
+      "seen": 0,
+      "liked": 1
+    }
+  }
+}

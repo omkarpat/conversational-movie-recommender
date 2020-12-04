@@ -136,7 +136,7 @@ def decode_sequences(input_ids, token_type_ids, model, tokenizer, args):
             current_output.append(prev.item())
 
         output = tokenizer.decode(current_output)
-        outputs.append(output.replace('\n', '') + '\n')
+        outputs.append(output.replace('\n', ''))
 
     return outputs
 
