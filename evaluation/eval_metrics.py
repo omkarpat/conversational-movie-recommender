@@ -13,7 +13,7 @@ import pprint
 from collections import Counter
 
 import nlgeval
-import nlp
+from datasets import load_metric
 import nltk
 from nltk.translate.meteor_score import meteor_score
 import numpy as np
@@ -42,11 +42,11 @@ class NLPReferenceMetric(ReferenceMetric):
     Huggingface NLP library
     """
     def __init__(self, module, compute_args={}):
-        self.scorer = nlp.load_metric(module)
+        self.scorer = load_metric(module)
         self.compute_args = compute_args
 
     def compute(self, hypotheses, references):
-        return self.scorer.compute(hypotheses, references, **self.compute_args)
+        return self.scorer.compute(predictions=hypotheses, references=references, **self.compute_args)
 
 
 class BLEUMetric(NLPReferenceMetric):
