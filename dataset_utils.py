@@ -95,6 +95,14 @@ def prepare_redial_knowledge_grounded_split(
 
     num_examples_using_knowledge = 0
 
+
+    unk_terms = {
+        "movie_genre": "<unk_genre>",
+        "director": "<unk_director>",
+        "cast": "<unk_cast>",
+    }
+    dact_set = set()
+
     for conversation_str in tqdm(split_conversations):
         conversation = json.loads(conversation_str)
 
@@ -111,24 +119,54 @@ def prepare_redial_knowledge_grounded_split(
                 movie_id = mention.group(1)
 
                 movie_title = movie_db_map.get(movie_id)
-
                 if not movie_title:
                     movie_title = conversation["movieMentions"][movie_id]
+                    if isinstance(movie_title, dict):
+                        movie_title = movie_title.get("title")
 
                 movie_title = movie_title_year_pattern.sub('', movie_title)
                 # naively substitute movie title in message
                 processed_text = processed_text.replace("@" + movie_id, movie_title)
 
                 response_knowledge.append(("movie_title", movie_title))
+                #print("\n", movie_id)
+                #print(conversation["movieMentions"].keys())
+                mms = conversation["movieMentions"].get(movie_id)
+                if isinstance(mms, dict):
+                    mgenres = mms["genres"] if mms.get("genres") else [unk_terms["genre"]]
+                    cast = [a["name"] + "," for a in mms["cast"]] if mms.get("cast") else [unk_terms["cast"]]
+                    director = [a["name"] + "," for a in mms["director"]] if mms.get("director") else [unk_terms["director"]]
+
+                    response_knowledge.extend([
+                        ("movie_genre", " ".join(mgenres)),
+                        ("director", " ".join(director)),
+                        ("cast", " ".join(cast))
+                    ])
 
             # For now, just pass in the surface form (later experiment is to try use normalized form)
             for genre_mention in message["genre_mentions"]:
+                #print(genre_mention)
                 response_knowledge.append(("genre", genre_mention["words"][0]))
 
             for imdb_entry in message["imdb_entries"]:
                 soup = BeautifulSoup(imdb_entry, "xml")
 
                 response_knowledge.append(('person', soup.find('name').text))
+
+
+            dacts = []
+            the_das = message["swbd_da"]
+            for da in the_das:
+                d = "<" + da["label_name"].replace(" ", "_") + ">"
+                dact_set.add(d)
+                dacts.append(d)
+            dact_tup = ("dact", " ".join(dacts))
+
+            response_knowledge.append(dact_tup)
+            #print(message)
+            #print(response_knowledge)
+            #input(">>")
+
 
 
             if i == len(messages) - 1 or \
@@ -151,8 +189,7 @@ def prepare_redial_knowledge_grounded_split(
                 response += processed_text + " . "
     print("Num examples:", len(examples))
     print("Num examples using knowledge: ", num_examples_using_knowledge)
-
-    return examples
+    return examples, list(unk_terms.values()) + list(dact_set)
 
 def get_movie_db_map(mentions_file_path):
     movie_db_map = {}
@@ -165,14 +202,31 @@ def get_movie_db_map(mentions_file_path):
     
     return movie_db_map
 
-def try_load_pickle(pickle_file_path):
+def try_load_pickle(pickle_file_path, get_special=False):
     if os.path.exists(pickle_file_path):
         with open(pickle_file_path, 'rb') as pickle_file:
-            return pickle.load(pickle_file)
+            data = pickle.load(pickle_file)
 
-def save_pickle(pickle_file_path, data):
+        if get_special and isinstance(data, dict):
+            retval = data["data"], data.get("special_terms")
+        else:
+            retval = data
+        return retval
+
+
+def save_pickle(pickle_file_path, data, special_terms=None):
+
+    if special_terms:
+        data = {
+            "data": data,
+            "special_terms": special_terms
+        }
+
     with open(pickle_file_path, 'wb') as pickle_file:
         pickle.dump(data, pickle_file)
+
+
+
 
 def prepare_redial_baseline_dataset(
     redial_path, 
@@ -212,11 +266,11 @@ def prepare_redial_knowledge_grounded_dataset(
     dataset_cache_path='kg_dataset_cache.pkl',
     split_files=None
 ):
-    dataset = try_load_pickle(dataset_cache_path)
+    dataset = try_load_pickle(dataset_cache_path, get_special=True)
 
     if dataset:
         print("Cached data already found, returning")
-        return dataset
+        return dataset[0], dataset[1]
 
     if split_files is None:
         split_files = {
@@ -228,10 +282,11 @@ def prepare_redial_knowledge_grounded_dataset(
 
     for split, split_file_name in split_files.items():
         split_file_path = os.path.join(redial_path, split_file_name)
-        examples = prepare_redial_knowledge_grounded_split(split_file_path, movie_db_map)
-
+        examples, special_terms = prepare_redial_knowledge_grounded_split(split_file_path, movie_db_map)
         dataset[split] = examples
+        if split.lower() == "train":
+            train_terms = special_terms
 
-    save_pickle(dataset_cache_path, dataset)
+    save_pickle(dataset_cache_path, dataset, special_terms=train_terms)
     print("Saved file to cache ", dataset_cache_path)
-    return dataset
+    return dataset, train_terms

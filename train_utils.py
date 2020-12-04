@@ -26,7 +26,7 @@ class TransferTransfoWithKnowledgeConstants(object):
     ADDITIONAL_TOKENS = TransferTransfoConstants.ADDITIONAL_TOKENS + [
         "<person>", "</person>",
         "<genre>", "</genre>",
-        "<movie_title>", "</movie_title>"
+        "<movie_title>", "</movie_title>",
     ]
 
     ATTR_TO_SPECIAL_TOKEN = TransferTransfoConstants.ATTR_TO_SPECIAL_TOKEN

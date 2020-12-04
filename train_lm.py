@@ -33,6 +33,7 @@ logger = logging.getLogger(__file__)
 def prepare_dataloaders(args, tokenizer):
 
     movie_db_map = get_movie_db_map(args.movies_data_path)
+    special_terms = None
 
     if args.configuration == "baseline":
         dataset = prepare_redial_baseline_dataset(
@@ -60,13 +61,18 @@ def prepare_dataloaders(args, tokenizer):
                 collate_fn=collate_fn,
                 shuffle=False)
     else:
-        dataset = prepare_redial_knowledge_grounded_dataset(
+        dataset, special_terms = prepare_redial_knowledge_grounded_dataset(
             args.data_path,
             tokenizer,
             movie_db_map,
             args.data_cache_path,
             split_files={"train": args.train_file, "test": args.eval_file}
         )
+        special_terms.extend([
+        "<cast>", "</cast>",
+        "<movie_genre>", "</movie_genre>",
+        "<director>", "</director>",
+        ])
         train_dataset = RedialTransferTransfoDataset(dataset["train"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args)
         test_dataset = RedialTransferTransfoDataset(dataset["test"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args)
 
@@ -80,7 +86,7 @@ def prepare_dataloaders(args, tokenizer):
                                   collate_fn=collate_fn,
                                   shuffle=False)
 
-    return train_loader, test_loader
+    return train_loader, test_loader, special_terms
 
 
 def train_lm(model, loader, optimizer, scheduler, step_counter, args):
@@ -433,7 +439,19 @@ if __name__ == "__main__":
         tokenizer, new_vocab_size = setup_knowledge_grounded_tokenizer(args)
         model = setup_double_heads_model(new_vocab_size, args)
 
-    train_loader, test_loader = prepare_dataloaders(args, tokenizer)
+    train_loader, test_loader, special_terms = prepare_dataloaders(args, tokenizer)
+    if isinstance(special_terms, list):
+        print("adding more tokens:")
+        print(" *", special_terms)
+        num_added = tokenizer.add_tokens(special_terms)
+        print("num_added:", num_added)
+        new_vocab_size += num_added
+
+    if args.configuration == "baseline":
+        model = setup_baseline_lm(args)
+    else:
+        model = setup_double_heads_model(new_vocab_size, args)
+
 
     optimizer = AdamW(model.parameters(), lr=args.lr, correct_bias=True)
     scheduler = PiecewiseLinearLR(optimizer, [(0, args.lr), (args.n_epochs * len(train_loader), 0.0)])

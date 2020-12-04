@@ -98,6 +98,10 @@ class RedialTransferTransfoDataset(Dataset):
     @staticmethod
     def build_input_from_segments(context, response, knowledge, tokenizer, special_tokens, lm_labels):
 
+        #print("context:", context)
+        #print("response:", response)
+        #print("knowledge:", knowledge)
+
         bos, eos, speaker1, speaker2 = tokenizer.convert_tokens_to_ids(special_tokens[:4])
 
         sequence = [[bos] + knowledge] + context + [response + [eos]]
@@ -113,6 +117,10 @@ class RedialTransferTransfoDataset(Dataset):
             instance["lm_labels"] = ([-100] * sum(len(s) for s in sequence[:-1])) + [-100] + sequence[-1][1:]
         else:
             instance["lm_labels"] = [-100] * len(instance["input_ids"])
+
+        #print(tokenizer.decode(instance["input_ids"]))
+        #print(instance["mc_token_ids"])
+        #input(">>>")
 
         return instance
 
@@ -140,12 +148,15 @@ class RedialTransferTransfoDataset(Dataset):
         tokenized_knowledge = []
 
         for (type, item) in knowledge:
-            start_tag = f"<{type}>"
-
-            end_tag = f"</{type}>"
-            tokenized_knowledge.append(self.tokenizer.convert_tokens_to_ids(start_tag))
-            tokenized_knowledge.extend(self.tokenizer.encode(item))
-            tokenized_knowledge.append(self.tokenizer.convert_tokens_to_ids(end_tag))
+            #print(f" * type: {type}\titem: {item}")
+            if type == "dact":
+                tokenized_knowledge.extend(self.tokenizer.encode(item))
+            else:
+                start_tag = f"<{type}>"
+                end_tag = f"</{type}>"
+                tokenized_knowledge.append(self.tokenizer.convert_tokens_to_ids(start_tag))
+                tokenized_knowledge.extend(self.tokenizer.encode(item))
+                tokenized_knowledge.append(self.tokenizer.convert_tokens_to_ids(end_tag))
         instances = []
 
         for j, candidate in enumerate(tokenized_candidates):
