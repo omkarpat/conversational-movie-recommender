@@ -185,8 +185,6 @@ def prepare_redial_knowledge_grounded_split(
                         response_knowledge
                     ))
 
-                    pdb.set_trace()
-
                     if len(response_knowledge) > 0:
                         num_examples_using_knowledge += 1
 
