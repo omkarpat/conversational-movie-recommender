@@ -51,10 +51,10 @@ def prepare_baseline_redial_split(
 
         for i, message in enumerate(messages):
             processed_text = message["text"]
-            
+
             for mention in movie_mention_pattern.finditer(processed_text):
                 movie_id = mention.group(1)
-                
+
                 # Remove year from title
                 movie_title = movie_title_year_pattern.sub('', movie_db_map[movie_id])
                 # for now, naively substitute movie title in message
@@ -79,7 +79,8 @@ def prepare_baseline_redial_split(
 
 def prepare_redial_knowledge_grounded_split(
         split_path,
-        movie_db_map
+        movie_db_map,
+        recommender_only=False
 ):
     print("\nLoading data", split_path)
 
@@ -112,7 +113,15 @@ def prepare_redial_knowledge_grounded_split(
         response = ""
         response_knowledge = []
 
+        if recommender_only and len(messages) > 0:
+            sender_id = messages[0]["senderWorkerId"]
+
         for i, message in enumerate(messages):
+
+            if recommender_only:
+                if message["senderWorkerId"] == sender_id:
+                    continue
+
             processed_text = message["text"]
 
             for mention in movie_mention_pattern.finditer(processed_text):
@@ -199,7 +208,7 @@ def get_movie_db_map(mentions_file_path):
 
         for row in reader:
             movie_db_map[row['movieId']] = row['movieName']
-    
+
     return movie_db_map
 
 def try_load_pickle(pickle_file_path, get_special=False):
@@ -229,8 +238,8 @@ def save_pickle(pickle_file_path, data, special_terms=None):
 
 
 def prepare_redial_baseline_dataset(
-    redial_path, 
-    tokenizer, 
+    redial_path,
+    tokenizer,
     movie_db_map,
     dataset_cache_path='dataset_cache.pkl'
 ):
@@ -240,7 +249,7 @@ def prepare_redial_baseline_dataset(
     if dataset:
         print("Cached data already found, returning")
         return dataset
-    
+
     split_files = {
         'train': 'train_data.jsonl',
         'test': 'test_data.jsonl'
@@ -253,7 +262,7 @@ def prepare_redial_baseline_dataset(
         examples = prepare_baseline_redial_split(split_file_path, tokenizer, movie_db_map)
 
         dataset[split] = examples
-    
+
     save_pickle(dataset_cache_path, dataset)
     print("Saved file to cache ", dataset_cache_path)
     return dataset
@@ -264,7 +273,8 @@ def prepare_redial_knowledge_grounded_dataset(
     tokenizer,
     movie_db_map,
     dataset_cache_path='kg_dataset_cache.pkl',
-    split_files=None
+    split_files=None,
+    recommender_only=False
 ):
     dataset = try_load_pickle(dataset_cache_path, get_special=True)
 

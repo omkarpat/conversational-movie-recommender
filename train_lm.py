@@ -66,7 +66,8 @@ def prepare_dataloaders(args, tokenizer):
             tokenizer,
             movie_db_map,
             args.data_cache_path,
-            split_files={"train": args.train_file, "test": args.eval_file}
+            split_files={"train": args.train_file, "test": args.eval_file},
+            recommender_only=args.recommender_only
         )
         special_terms.extend([
         "<cast>", "</cast>",
@@ -225,13 +226,13 @@ def evaluate_double_heads_lm(model, val_loader, loss_fn, args):
 
 
 def train_baseline_lm(model, loaders, optimizer, loss_fn, scheduler, args):
-    
+
     train_loader, test_loader = loaders
 
     step_counter = GlobalStepCounter()
     for i in range(args.n_epochs):
         logger.info(f"Epoch {i + 1}:")
-        train_lm(model, train_loader, optimizer, scheduler, step_counter, args)        
+        train_lm(model, train_loader, optimizer, scheduler, step_counter, args)
         evaluate_lm(model, test_loader, loss_fn, args)
         epoch_model = f"{args.experiment_name}_epoch_{i + 1}"
         save_full_model(model, tokenizer, args, epoch_model)
@@ -259,7 +260,7 @@ def train_knowledge_grounded_lm(model, loaders, optimizer, loss_fn, scheduler, a
 
     if args.n_epochs < 1:
         evaluate_double_heads_lm(model, val_loader, loss_fn, args)
-    
+
 
 def setup_baseline_lm(args):
     if args.gradient_checkpoint:
@@ -402,6 +403,11 @@ def get_argparser():
         type=int,
         help="The frequency (in number of steps) with which the model checkpoints are saved"
     )
+    parser.add_argument('--recommender_only',
+        dest='recommender_only',
+        action='store_true',
+        help="Train only on recommender side utterances"
+    )
 
     # Double heads model specific args
     double_heads_parser = parser.add_argument_group('Double Heads Model Arguments:')
@@ -416,6 +422,7 @@ def get_argparser():
                                      help="Weight for Multiple-Choice loss coefficient")
 
 
+    parser.set_defaults(recommender_only=False)
     return parser
 
 if __name__ == "__main__":
