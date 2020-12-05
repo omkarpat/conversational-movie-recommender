@@ -113,14 +113,10 @@ def prepare_redial_knowledge_grounded_split(
         response = ""
         response_knowledge = []
 
-        if recommender_only and len(messages) > 0:
+        if recommender_only:
             sender_id = messages[0]["senderWorkerId"]
 
         for i, message in enumerate(messages):
-
-            if recommender_only:
-                if message["senderWorkerId"] == sender_id:
-                    continue
 
             processed_text = message["text"]
 
@@ -181,14 +177,18 @@ def prepare_redial_knowledge_grounded_split(
             if i == len(messages) - 1 or \
                     message["senderWorkerId"] != messages[i + 1]["senderWorkerId"]:
                 response += processed_text
-                examples.append(KnowledgeGroundedExample(
-                    context,
-                    response,
-                    response_knowledge
-                ))
 
-                if len(response_knowledge) > 0:
-                    num_examples_using_knowledge += 1
+                if not recommender_only or (recommender_only and sender_id != message["senderWorkerId"]):
+                    examples.append(KnowledgeGroundedExample(
+                        context,
+                        response,
+                        response_knowledge
+                    ))
+
+                    pdb.set_trace()
+
+                    if len(response_knowledge) > 0:
+                        num_examples_using_knowledge += 1
 
                 context = context + [response]
                 response = ""
@@ -292,7 +292,7 @@ def prepare_redial_knowledge_grounded_dataset(
 
     for split, split_file_name in split_files.items():
         split_file_path = os.path.join(redial_path, split_file_name)
-        examples, special_terms = prepare_redial_knowledge_grounded_split(split_file_path, movie_db_map)
+        examples, special_terms = prepare_redial_knowledge_grounded_split(split_file_path, movie_db_map, recommender_only)
         dataset[split] = examples
         if split.lower() == "train":
             train_terms = special_terms

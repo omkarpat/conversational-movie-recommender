@@ -327,11 +327,11 @@ def get_argparser():
         help="Path to movie mentions file"
     )
     parser.add_argument('--train-file',
-        default="train_data_genre_tagged.jsonl",
+        default="train_data_swda_tagged.jsonl",
         help="Name of train jsonl file."
     )
     parser.add_argument('--eval-file',
-        default="test_data_genre_tagged.jsonl",
+        default="test_data_swda_tagged.jsonl",
         help="Name of test jsonl file."
     )
     parser.add_argument('--data_cache_path',
