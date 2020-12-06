@@ -289,7 +289,6 @@ if __name__ == "__main__":
                         )
     parser.set_defaults(include_dialog_acts=True)
     parser.add_argument('--exclude_dialog_acts',
-                        type=bool,
                         dest='include_dialog_acts',
                         action='store_false',
                         help="Whether to exclude dialog act in the knowledge")
