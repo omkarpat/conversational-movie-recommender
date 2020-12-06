@@ -13,6 +13,7 @@ from train_utils import collate_batch_elements, collate_transfertransfo_batch_el
 def prepare_dataloader(args, tokenizer):
 
     movie_db_map = get_movie_db_map(args.movies_data_path)
+
     dataset = prepare_redial_baseline_dataset(
         args.data_path,
         tokenizer,
@@ -31,10 +32,11 @@ def prepare_dataloader(args, tokenizer):
 
 def prepare_knowledge_grounded_dataloader(args, tokenizer):
     movie_db_map = get_movie_db_map(args.movies_data_path)
-    dataset = prepare_redial_knowledge_grounded_dataset(
+    dataset, _ = prepare_redial_knowledge_grounded_dataset(
         args.data_path,
         tokenizer,
-        movie_db_map
+        movie_db_map,
+        args.data_cache_path
     )
 
     test_dataset = RedialTransferTransfoDataset(
@@ -268,4 +270,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     args.inference = True
+    print(args)
     main(args)

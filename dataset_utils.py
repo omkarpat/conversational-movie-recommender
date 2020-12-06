@@ -210,6 +210,7 @@ def get_movie_db_map(mentions_file_path):
     return movie_db_map
 
 def try_load_pickle(pickle_file_path, get_special=False):
+    print("trying to load pickle", pickle_file_path)
     if os.path.exists(pickle_file_path):
         with open(pickle_file_path, 'rb') as pickle_file:
             data = pickle.load(pickle_file)
@@ -219,6 +220,7 @@ def try_load_pickle(pickle_file_path, get_special=False):
         else:
             retval = data
         return retval
+    print("not found ...")
 
 
 def save_pickle(pickle_file_path, data, special_terms=None):
