@@ -37,7 +37,8 @@ def prepare_knowledge_grounded_dataloader(args, tokenizer):
         movie_db_map,
         args.data_cache_path,
         split_files={"train": args.train_file, "test": args.eval_file},
-        recommender_only=args.recommender_only
+        recommender_only=args.recommender_only,
+        include_dacts=args.include_dialog_acts
     )
     special_terms.extend([
         "<cast>", "</cast>",
@@ -286,6 +287,10 @@ if __name__ == "__main__":
                         action='store_true',
                         help="Train only on recommender side utterances"
                         )
+    parser.add_argument('--include_dialog_acts',
+                        type=bool,
+                        default=True,
+                        help="Whether to include dialog act in the knowledge")
 
     args = parser.parse_args()
 
