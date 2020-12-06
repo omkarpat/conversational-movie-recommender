@@ -287,10 +287,13 @@ if __name__ == "__main__":
                         action='store_true',
                         help="Train only on recommender side utterances"
                         )
-    parser.add_argument('--include_dialog_acts',
+    parser.set_defaults(include_dialog_acts=True)
+    parser.add_argument('--exclude_dialog_acts',
                         type=bool,
-                        default=True,
-                        help="Whether to include dialog act in the knowledge")
+                        dest='include_dialog_acts',
+                        action='store_false',
+                        help="Whether to exclude dialog act in the knowledge")
+
 
     args = parser.parse_args()
 

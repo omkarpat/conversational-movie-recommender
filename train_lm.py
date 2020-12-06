@@ -410,10 +410,12 @@ def get_argparser():
         help="Train only on recommender side utterances"
     )
 
-    parser.add_argument('--include_dialog_acts',
+    parser.set_defaults(include_dialog_acts=True)
+    parser.add_argument('--exclude_dialog_acts',
                         type=bool,
-                        default=True,
-                        help="Whether to include dialog acts in the knowledge")
+                        dest='include_dialog_acts',
+                        action='store_false',
+                        help="Whether to exclude dialog act in the knowledge")
 
     # Double heads model specific args
     double_heads_parser = parser.add_argument_group('Double Heads Model Arguments:')
