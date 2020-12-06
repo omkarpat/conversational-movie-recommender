@@ -67,7 +67,8 @@ def prepare_dataloaders(args, tokenizer):
             movie_db_map,
             args.data_cache_path,
             split_files={"train": args.train_file, "test": args.eval_file},
-            recommender_only=args.recommender_only
+            recommender_only=args.recommender_only,
+            include_dacts=args.include_dialog_acts
         )
         special_terms.extend([
         "<cast>", "</cast>",
@@ -408,6 +409,12 @@ def get_argparser():
         action='store_true',
         help="Train only on recommender side utterances"
     )
+
+    parser.set_defaults(include_dialog_acts=True)
+    parser.add_argument('--exclude_dialog_acts',
+                        dest='include_dialog_acts',
+                        action='store_false',
+                        help="Whether to exclude dialog act in the knowledge")
 
     # Double heads model specific args
     double_heads_parser = parser.add_argument_group('Double Heads Model Arguments:')
