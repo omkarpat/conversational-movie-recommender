@@ -31,11 +31,20 @@ def prepare_dataloader(args, tokenizer):
 
 def prepare_knowledge_grounded_dataloader(args, tokenizer):
     movie_db_map = get_movie_db_map(args.movies_data_path)
-    dataset = prepare_redial_knowledge_grounded_dataset(
+    dataset, special_terms = prepare_redial_knowledge_grounded_dataset(
         args.data_path,
         tokenizer,
-        movie_db_map
+        movie_db_map,
+        args.data_cache_path,
+        split_files={"train": args.train_file, "test": args.eval_file},
+        recommender_only=args.recommender_only,
+        include_dacts=args.include_dialog_acts
     )
+    special_terms.extend([
+        "<cast>", "</cast>",
+        "<movie_genre>", "</movie_genre>",
+        "<director>", "</director>",
+    ])
 
     test_dataset = RedialTransferTransfoDataset(
         dataset["test"], tokenizer, TransferTransfoConstants.SPECIAL_TOKENS, args)
@@ -225,6 +234,15 @@ if __name__ == "__main__":
         help="Path to movie mentions file"
     )
 
+    parser.add_argument('--train-file',
+                        default="train_data_swda_tagged.jsonl",
+                        help="Name of train jsonl file."
+                        )
+    parser.add_argument('--eval-file',
+                        default="test_data_swda_tagged.jsonl",
+                        help="Name of test jsonl file."
+                        )
+
     parser.add_argument('--data_cache_path',
         default="redial_dataset_cache.pkl",
         help="Path to cached data"
@@ -264,8 +282,20 @@ if __name__ == "__main__":
     double_heads_parser.add_argument('--num_candidates',
                                      type=int, default=1,
                                      help="Number of candidates to select from")
+    parser.add_argument('--recommender_only',
+                        dest='recommender_only',
+                        action='store_true',
+                        help="Train only on recommender side utterances"
+                        )
+    parser.set_defaults(include_dialog_acts=True)
+    parser.add_argument('--exclude_dialog_acts',
+                        dest='include_dialog_acts',
+                        action='store_false',
+                        help="Whether to exclude dialog act in the knowledge")
+
 
     args = parser.parse_args()
 
     args.inference = True
+    print(args)
     main(args)

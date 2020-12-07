@@ -80,7 +80,8 @@ def prepare_baseline_redial_split(
 def prepare_redial_knowledge_grounded_split(
         split_path,
         movie_db_map,
-        recommender_only=False
+        recommender_only=False,
+        include_dact=True
 ):
     print("\nLoading data", split_path)
 
@@ -159,15 +160,16 @@ def prepare_redial_knowledge_grounded_split(
                 response_knowledge.append(('person', soup.find('name').text))
 
 
-            dacts = []
-            the_das = message["swbd_da"]
-            for da in the_das:
-                d = "<" + da["label_name"].replace(" ", "_") + ">"
-                dact_set.add(d)
-                dacts.append(d)
-            dact_tup = ("dact", " ".join(dacts))
+            if include_dact:
+                dacts = []
+                the_das = message["swbd_da"]
+                for da in the_das:
+                    d = "<" + da["label_name"].replace(" ", "_") + ">"
+                    dact_set.add(d)
+                    dacts.append(d)
+                dact_tup = ("dact", " ".join(dacts))
 
-            response_knowledge.append(dact_tup)
+                response_knowledge.append(dact_tup)
             #print(message)
             #print(response_knowledge)
             #input(">>")
@@ -210,6 +212,7 @@ def get_movie_db_map(mentions_file_path):
     return movie_db_map
 
 def try_load_pickle(pickle_file_path, get_special=False):
+    print("trying to load pickle", pickle_file_path)
     if os.path.exists(pickle_file_path):
         with open(pickle_file_path, 'rb') as pickle_file:
             data = pickle.load(pickle_file)
@@ -219,6 +222,7 @@ def try_load_pickle(pickle_file_path, get_special=False):
         else:
             retval = data
         return retval
+    print("not found ...")
 
 
 def save_pickle(pickle_file_path, data, special_terms=None):
@@ -272,7 +276,8 @@ def prepare_redial_knowledge_grounded_dataset(
     movie_db_map,
     dataset_cache_path='kg_dataset_cache.pkl',
     split_files=None,
-    recommender_only=False
+    recommender_only=False,
+    include_dacts=True,
 ):
     dataset = try_load_pickle(dataset_cache_path, get_special=True)
 
@@ -290,7 +295,7 @@ def prepare_redial_knowledge_grounded_dataset(
 
     for split, split_file_name in split_files.items():
         split_file_path = os.path.join(redial_path, split_file_name)
-        examples, special_terms = prepare_redial_knowledge_grounded_split(split_file_path, movie_db_map, recommender_only)
+        examples, special_terms = prepare_redial_knowledge_grounded_split(split_file_path, movie_db_map, recommender_only, include_dacts)
         dataset[split] = examples
         if split.lower() == "train":
             train_terms = special_terms
