@@ -114,7 +114,7 @@ def prepare_redial_knowledge_grounded_split(
         response_knowledge = []
 
         if recommender_only:
-            sender_id = messages[0]["senderWorkerId"]
+            sender_id = conversation["initiatorWorkerId"]
 
         for i, message in enumerate(messages):
 
